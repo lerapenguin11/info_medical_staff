@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">InfoMedicalStaff</string>
+    <string name="greeting">Добро\nпожаловать</string>
+    <string name="email">Email</string>
+    <string name="password">Пароль</string>
+    <string name="registration">Нет аккаунта? Зарегистрироваться</string>
+    <string name="google">Google</string>
 </resources>

@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.InfoMedicalStaff" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+    <style name="Theme.InfoMedicalStaff" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/purple_500</item>
         <item name="colorPrimaryVariant">@color/purple_700</item>
@@ -12,5 +12,25 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
+    </style>
+    
+    <style name="TextScreenLogin" parent="TextAppearance.AppCompat">
+        <item name="android:textSize">40sp</item>
+        <item name="fontFamily">@font/roboto_bold</item>
+        <item name="android:textColor">@color/dark_accent_text</item>
+    </style>
+    
+    <style name="ButtonAuthorization" parent="Widget.AppCompat.Button">
+        <item name="android:textColor">@color/accent_icon</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:drawableEnd">@drawable/google</item>
+        <item name="android:padding">16dp</item>
+    </style>
+
+    <style name="TextScreenAuthorizationMin" parent="TextAppearance.AppCompat">
+        <item name="android:textSize">16sp</item>
+        <item name="fontFamily">@font/roboto_bold</item>
+        <item name="android:textColor">@color/accent_icon</item>
     </style>
 </resources>

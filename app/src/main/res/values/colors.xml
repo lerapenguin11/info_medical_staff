@@ -7,4 +7,10 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <!-- Project colors -->
+    <color name="background">#EFF0FC</color>
+    <color name="accent_text">#1689FC</color>
+    <color name="dark_accent_text">#6672FF</color>
+    <color name="accent_icon">#3B608C</color>
 </resources>

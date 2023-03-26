@@ -13,4 +13,5 @@
     <color name="accent_text">#1689FC</color>
     <color name="dark_accent_text">#6672FF</color>
     <color name="accent_icon">#3B608C</color>
+    <color name="accent_text_min">#2E3D6D</color>
 </resources>

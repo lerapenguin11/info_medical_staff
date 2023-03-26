@@ -33,4 +33,21 @@
         <item name="fontFamily">@font/roboto_bold</item>
         <item name="android:textColor">@color/accent_icon</item>
     </style>
+
+    <style name="TextToolbar" parent="TextAppearance.AppCompat">
+        <item name="android:textColor">@color/white</item>
+        <item name="fontFamily">@font/roboto_bold</item>
+    </style>
+    
+    <style name="TextMenu" parent="TextAppearance.AppCompat">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/accent_text</item>
+        <item name="fontFamily">@font/roboto_bold</item>
+    </style>
+
+    <style name="MenuDoc" parent="TextAppearance.AppCompat">
+        <item name="android:textSize">14sp</item>
+        <item name="android:fontFamily">@font/roboto_bold</item>
+        <item name="android:textColor">@color/accent_text_min</item>
+    </style>
 </resources>

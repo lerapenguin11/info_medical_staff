@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "380874521958",
+    "firebase_url": "https://information-for-medical-staff-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "information-for-medical-staff",
+    "storage_bucket": "information-for-medical-staff.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:380874521958:android:d6be7430b9d55ac8249ca7",
+        "android_client_info": {
+          "package_name": "com.example.infomedicalstaff"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "380874521958-lanvslv6rpahdm95d8nu0cdt8hqi8ubb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAcXLxo3hDTaL0_M7verPBxtVZo2iuKi6c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "380874521958-lanvslv6rpahdm95d8nu0cdt8hqi8ubb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

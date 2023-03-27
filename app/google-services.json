@@ -15,7 +15,15 @@
       },
       "oauth_client": [
         {
-          "client_id": "380874521958-lanvslv6rpahdm95d8nu0cdt8hqi8ubb.apps.googleusercontent.com",
+          "client_id": "380874521958-dhs9u0jb123ij8r8ltv8gec5qmj896ui.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.infomedicalstaff",
+            "certificate_hash": "92ab419ca6fc70d1e667b6edd58fdc9def67c28c"
+          }
+        },
+        {
+          "client_id": "380874521958-rmedgg90r6a98uuoul7go8dqbr3j71bb.apps.googleusercontent.com",
           "client_type": 3
         }
       ],

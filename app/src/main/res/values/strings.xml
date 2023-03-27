@@ -15,4 +15,5 @@
     <string name="favorites">Избранное</string>
     <string name="search">Поиск...</string>
     <string name="inf_banner">Оперативная информация</string>
+    <string name="title_activity_maps">MapsActivity</string>
 </resources>

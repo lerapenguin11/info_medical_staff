@@ -28,6 +28,12 @@ class LoginFragment : Fragment() {
             transaction.commit()
         }
 
+        binding.btnGoogleLogin.setOnClickListener {
+            val homeFragment = HomeFragment()
+            val transaction : FragmentTransaction = fragmentManager!!.beginTransaction()
+            transaction.replace(R.id.main_layout, homeFragment)
+            transaction.commit()
+        }
         return binding.root
     }
 }

@@ -60,12 +60,9 @@ class LoginFragment : Fragment() {
         //button google
         binding.btnGoogleLogin.setOnClickListener {
             signInWithGoogle()
-
-            val homeFragment = HomeFragment()
-            val transaction : FragmentTransaction = fragmentManager!!.beginTransaction()
-            transaction.replace(R.id.main_layout, homeFragment)
-            transaction.commit()
         }
+
+        checkAuthState()
 
         binding.btnSingnup.setOnClickListener {
             val email = binding.etRegEmail.text.toString()
@@ -107,7 +104,17 @@ class LoginFragment : Fragment() {
         auth.signInWithCredential(credential).addOnCompleteListener {
             if(it.isSuccessful){
                 Log.d("AuthTag", "Google signIn done")
+                checkAuthState()
             } else Log.d("AuthTag", "Google signIn error")
+        }
+    }
+
+    private fun checkAuthState(){
+        if(auth.currentUser != null){
+            val homeFragment = HomeFragment()
+            val transaction : FragmentTransaction = requireFragmentManager().beginTransaction()
+            transaction.replace(R.id.main_layout, homeFragment)
+            transaction.commit()
         }
     }
 }

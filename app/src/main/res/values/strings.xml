@@ -17,4 +17,6 @@
     <string name="inf_banner">Оперативная информация</string>
     <string name="title_activity_maps">MapsActivity</string>
     <string name="password_two">Повторите пароль</string>
+    <string name="workers_chats">Рабочие чаты</string>
+    <string name="tools_desc_chat">Добрый день, уважаймые коллеги!!!</string>
 </resources>

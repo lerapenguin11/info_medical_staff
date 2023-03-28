@@ -27,17 +27,17 @@
         app:layout_constraintTop_toBottomOf="@+id/top_background1" />
 
     <EditText
-        android:id="@+id/et_reg_fio"
+        android:id="@+id/et_reg_email"
         android:layout_width="0dp"
         android:layout_height="50dp"
         android:background="@drawable/edittext_background"
         android:ems="10"
         android:layout_marginEnd="32dp"
         android:layout_marginTop="16dp"
-        android:drawableStart="@drawable/name"
+        android:drawableStart="@drawable/email"
         android:drawablePadding="16dp"
-        android:hint="@string/name"
-        android:inputType="textPersonName"
+        android:hint="@string/email"
+        android:inputType="textEmailAddress"
         android:textColorHint="@color/accent_icon"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/welcome"
@@ -45,25 +45,26 @@
         tools:ignore="TextFields" />
 
     <EditText
-        android:id="@+id/et_reg_email"
+        android:id="@+id/et_reg_password"
         android:layout_width="0dp"
         android:layout_height="50dp"
+        android:layout_marginTop="24dp"
         android:layout_marginEnd="32dp"
         android:background="@drawable/edittext_background"
-        android:drawableStart="@drawable/email"
+        android:drawableStart="@drawable/password"
         android:drawablePadding="16dp"
         android:ems="10"
-        android:layout_marginTop="24dp"
-        android:hint="@string/email"
-        android:inputType="textPersonName"
+        android:hint="@string/password"
+        android:inputType="textPassword"
         android:textColorHint="@color/accent_icon"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/welcome"
-        app:layout_constraintTop_toBottomOf="@+id/et_reg_fio"
+        app:layout_constraintTop_toBottomOf="@+id/et_reg_email"
         tools:ignore="TextFields" />
 
     <EditText
-        android:id="@+id/et_login_password"
+        android:id="@+id/et_signup_password_two"
         android:layout_width="0dp"
         android:layout_height="50dp"
         android:layout_marginEnd="32dp"
@@ -71,22 +72,22 @@
         android:drawableStart="@drawable/password"
         android:drawablePadding="16dp"
         android:ems="10"
-        android:hint="@string/password"
+        android:hint="@string/password_two"
         android:layout_marginTop="24dp"
         android:inputType="textPassword"
         android:textColorHint="@color/accent_icon"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/welcome"
-        app:layout_constraintTop_toBottomOf="@+id/et_reg_email"
+        app:layout_constraintTop_toBottomOf="@+id/et_reg_password"
         tools:ignore="TextFields" />
 
     <ImageView
-        android:id="@+id/btn_forward"
+        android:id="@+id/btn_singnup"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_marginEnd="32dp"
         android:layout_marginTop="24dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_login_password"
+        app:layout_constraintTop_toBottomOf="@+id/et_signup_password_two"
         app:srcCompat="@drawable/btn_arraw1" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -16,4 +16,5 @@
     <string name="search">Поиск...</string>
     <string name="inf_banner">Оперативная информация</string>
     <string name="title_activity_maps">MapsActivity</string>
+    <string name="password_two">Повторите пароль</string>
 </resources>

@@ -26,8 +26,8 @@ class LoginFragment : Fragment() {
     private var _binding : FragmentLoginBinding? = null
     private val binding get() = _binding!!
 
-    lateinit var launcher: ActivityResultLauncher<Intent>
-    lateinit var auth : FirebaseAuth
+    private lateinit var launcher: ActivityResultLauncher<Intent>
+    private lateinit var auth : FirebaseAuth
 
     @SuppressLint("CommitTransaction", "UseRequireInsteadOfGet")
     override fun onCreateView(
@@ -61,10 +61,26 @@ class LoginFragment : Fragment() {
         binding.btnGoogleLogin.setOnClickListener {
             signInWithGoogle()
 
-            /*val homeFragment = HomeFragment()
+            val homeFragment = HomeFragment()
             val transaction : FragmentTransaction = fragmentManager!!.beginTransaction()
             transaction.replace(R.id.main_layout, homeFragment)
-            transaction.commit()*/
+            transaction.commit()
+        }
+
+        binding.btnSingnup.setOnClickListener {
+            val email = binding.etRegEmail.text.toString()
+            val password = binding.etSignupPasswordTwo.text.toString()
+
+            if(email.isNotEmpty() && password.isNotEmpty()){
+                auth.signInWithEmailAndPassword(email, password).addOnCompleteListener{
+                    if(it.isSuccessful){
+                        val homeFragment = HomeFragment()
+                        val transaction : FragmentTransaction = fragmentManager!!.beginTransaction()
+                        transaction.replace(R.id.main_layout, homeFragment)
+                        transaction.commit()
+                    }
+                }
+            }
         }
 
         return binding.root

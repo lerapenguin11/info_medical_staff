@@ -28,7 +28,7 @@
         app:layout_constraintTop_toBottomOf="@+id/top_background1" />
 
     <EditText
-        android:id="@+id/et_reg_fio"
+        android:id="@+id/et_reg_email"
         android:layout_width="0dp"
         android:layout_height="50dp"
         android:background="@drawable/edittext_background"
@@ -46,7 +46,7 @@
         tools:ignore="TextFields" />
 
     <EditText
-        android:id="@+id/et_login_password"
+        android:id="@+id/et_signup_password_two"
         android:layout_width="0dp"
         android:layout_height="50dp"
         android:layout_marginEnd="32dp"
@@ -60,17 +60,17 @@
         android:textColorHint="@color/accent_icon"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/welcome"
-        app:layout_constraintTop_toBottomOf="@+id/et_reg_fio"
+        app:layout_constraintTop_toBottomOf="@+id/et_reg_email"
         tools:ignore="TextFields" />
 
     <ImageView
-        android:id="@+id/btn_forward"
+        android:id="@+id/btn_singnup"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_marginEnd="32dp"
         android:layout_marginTop="24dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_login_password"
+        app:layout_constraintTop_toBottomOf="@+id/et_signup_password_two"
         app:srcCompat="@drawable/btn_arraw1" />
 
     <androidx.appcompat.widget.AppCompatButton
@@ -81,9 +81,9 @@
         style="@style/ButtonAuthorization"
         android:layout_marginTop="24dp"
         android:background="@drawable/btn_background"
-        app:layout_constraintEnd_toEndOf="@+id/et_login_password"
-        app:layout_constraintStart_toStartOf="@+id/et_login_password"
-        app:layout_constraintTop_toBottomOf="@+id/btn_forward" />
+        app:layout_constraintEnd_toEndOf="@+id/et_signup_password_two"
+        app:layout_constraintStart_toStartOf="@+id/et_signup_password_two"
+        app:layout_constraintTop_toBottomOf="@+id/btn_singnup" />
 
     <TextView
         android:id="@+id/tv_registration"

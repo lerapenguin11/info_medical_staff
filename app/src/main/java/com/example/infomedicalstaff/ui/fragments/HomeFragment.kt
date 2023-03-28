@@ -1,4 +1,4 @@
-package com.example.infomedicalstaff
+package com.example.infomedicalstaff.ui.fragments
 
 import android.annotation.SuppressLint
 import android.os.Bundle
@@ -6,8 +6,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.FragmentTransaction
+import com.example.infomedicalstaff.R
 import com.example.infomedicalstaff.databinding.FragmentHomeBinding
 
 class HomeFragment : Fragment() {

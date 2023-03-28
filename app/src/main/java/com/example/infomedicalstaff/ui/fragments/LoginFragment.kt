@@ -1,4 +1,4 @@
-package com.example.infomedicalstaff
+package com.example.infomedicalstaff.ui.fragments
 
 import android.annotation.SuppressLint
 import android.content.Intent
@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.FragmentTransaction
+import com.example.infomedicalstaff.R
 import com.example.infomedicalstaff.databinding.FragmentLoginBinding
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient

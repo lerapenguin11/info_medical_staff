@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/background"
-    tools:context=".LoginFragment">
+    tools:context=".ui.fragments.LoginFragment">
 
     <ImageView
         android:id="@+id/top_background1"

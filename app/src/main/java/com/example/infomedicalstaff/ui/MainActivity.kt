@@ -1,9 +1,11 @@
-package com.example.infomedicalstaff
+package com.example.infomedicalstaff.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.FragmentManager
+import com.example.infomedicalstaff.R
 import com.example.infomedicalstaff.databinding.ActivityMainBinding
+import com.example.infomedicalstaff.ui.fragments.LoginFragment
 
 class MainActivity : AppCompatActivity() {
 

@@ -26,8 +26,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun createLoginFragment() {
-        val loginFragment = LoginFragment()
-        val fm : FragmentManager = supportFragmentManager
-        fm.beginTransaction().add(R.id.main_layout, loginFragment).commit()
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.main_layout, LoginFragment()).commit()
     }
 }

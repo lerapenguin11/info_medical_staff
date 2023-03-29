@@ -14,7 +14,18 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+    }
 
+    override fun onStart() {
+        super.onStart()
+        initFunc()
+    }
+
+    private fun initFunc() {
+        createLoginFragment()
+    }
+
+    private fun createLoginFragment() {
         val loginFragment = LoginFragment()
         val fm : FragmentManager = supportFragmentManager
         fm.beginTransaction().add(R.id.main_layout, loginFragment).commit()

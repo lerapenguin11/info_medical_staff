@@ -19,4 +19,6 @@
     <string name="password_two">Повторите пароль</string>
     <string name="workers_chats">Рабочие чаты</string>
     <string name="tools_desc_chat">Добрый день, уважаймые коллеги!!!</string>
+    <string name="three_dots">...</string>
+    <string name="hint_message">Введите ваше сообщение</string>
 </resources>

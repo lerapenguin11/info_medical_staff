@@ -5,6 +5,7 @@ data class CommonModel(
     val userName : String = "",
     var state : String = "",
     var photoURL : String = "empty",
+    var fullName : String = "",
     //данные для чата
     var text : String = "",
     var type : String = "",

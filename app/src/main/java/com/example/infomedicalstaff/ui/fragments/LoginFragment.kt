@@ -13,6 +13,8 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.FragmentTransaction
 import com.example.infomedicalstaff.R
 import com.example.infomedicalstaff.databinding.FragmentLoginBinding
+import com.example.infomedicalstaff.utilits.AUTH
+import com.example.infomedicalstaff.utilits.initFirebase
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
@@ -28,7 +30,7 @@ class LoginFragment : Fragment() {
     private val binding get() = _binding!!
 
     private lateinit var launcher: ActivityResultLauncher<Intent>
-    private lateinit var auth : FirebaseAuth
+
 
     @SuppressLint("CommitTransaction", "UseRequireInsteadOfGet")
     override fun onCreateView(
@@ -37,7 +39,8 @@ class LoginFragment : Fragment() {
     ): View {
         _binding = FragmentLoginBinding.inflate(inflater, container, false)
 
-        auth = Firebase.auth
+        initFirebase()
+
         launcher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){
             val task = GoogleSignIn.getSignedInAccountFromIntent(it.data)
             try {
@@ -70,7 +73,7 @@ class LoginFragment : Fragment() {
             val password = binding.etSignupPasswordTwo.text.toString()
 
             if(email.isNotEmpty() && password.isNotEmpty()){
-                auth.signInWithEmailAndPassword(email, password).addOnCompleteListener{
+                AUTH.signInWithEmailAndPassword(email, password).addOnCompleteListener{
                     if(it.isSuccessful){
                         val homeFragment = HomeFragment()
                         val transaction : FragmentTransaction = fragmentManager!!.beginTransaction()
@@ -102,8 +105,9 @@ class LoginFragment : Fragment() {
 
     private fun firebaseAuthWithGoogle(idToken : String){
         val credential = GoogleAuthProvider.getCredential(idToken, null)
-        auth.signInWithCredential(credential).addOnCompleteListener {
+        AUTH.signInWithCredential(credential).addOnCompleteListener {
             if(it.isSuccessful){
+                //TODO добавление в бд аккаунт гугл
                 Log.d("AuthTag", "Google signIn done")
                 checkAuthState()
             } else Log.d("AuthTag", "Google signIn error")
@@ -111,7 +115,7 @@ class LoginFragment : Fragment() {
     }
 
     private fun checkAuthState(){
-        if(auth.currentUser != null){
+        if(AUTH.currentUser != null){
             val homeFragment = HomeFragment()
             val transaction : FragmentTransaction = requireFragmentManager().beginTransaction()
             transaction.replace(R.id.main_layout, homeFragment)

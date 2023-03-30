@@ -15,4 +15,6 @@
     <color name="accent_icon">#3B608C</color>
     <color name="accent_text_min">#2E3D6D</color>
     <color name="toolbar_chat">#9ba3ff</color>
+    <color name="background_message_user">#9b89ff</color>
+    <color name="background_message_receiving">#ffe4f7</color>
 </resources>

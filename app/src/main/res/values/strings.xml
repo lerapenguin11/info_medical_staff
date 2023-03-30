@@ -21,4 +21,7 @@
     <string name="tools_desc_chat">Добрый день, уважаймые коллеги!!!</string>
     <string name="three_dots">...</string>
     <string name="hint_message">Введите ваше сообщение</string>
+    <string name="profile">Профиль</string>
+    <string name="user_name">Имя пользователя</string>
+    <string name="user_surname">Введите фамилию</string>
 </resources>

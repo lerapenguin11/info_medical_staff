@@ -31,4 +31,22 @@ class HomeFragment : Fragment() {
 
         return binding.root
     }
+
+    override fun onResume() {
+        super.onResume()
+        initFunc()
+    }
+
+    private fun initFunc() {
+        createProfileFragment()
+    }
+
+    private fun createProfileFragment() {
+        binding.ivHomeUserPhoto.setOnClickListener {
+            val profileFragment = ProfileFragment()
+            val transaction : FragmentTransaction = requireFragmentManager().beginTransaction()
+            transaction.replace(R.id.main_layout, profileFragment)
+            transaction.commit()
+        }
+    }
 }

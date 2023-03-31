@@ -48,7 +48,7 @@ class ChangeNameFragment : Fragment() {
             Toast.makeText(context, "Поле имя не может быть пустым", Toast.LENGTH_LONG).show()
         } else {
             val fullName = "$name $surname"
-            REF_DATABASE_ROOT.child(NODE_USERS).child(UID).child(CHILD_FULL_NAME)
+            REF_DATABASE_ROOT.child(NODE_USERS).child(CURRENT_UID).child(CHILD_FULL_NAME)
                 .setValue(fullName).addOnCompleteListener{
                     if(it.isSuccessful){
                         Toast.makeText(context, "Данные обновлены", Toast.LENGTH_LONG).show()

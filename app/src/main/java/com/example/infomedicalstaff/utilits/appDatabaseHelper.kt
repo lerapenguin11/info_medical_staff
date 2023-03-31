@@ -8,7 +8,7 @@ import com.google.firebase.database.FirebaseDatabase
 lateinit var AUTH : FirebaseAuth
 lateinit var REF_DATABASE_ROOT : DatabaseReference
 lateinit var USER : User
-lateinit var UID : String
+lateinit var CURRENT_UID : String
 
 const val NODE_USERS = "users"
 
@@ -27,6 +27,6 @@ fun initFirebase(){
     AUTH = FirebaseAuth.getInstance()
     REF_DATABASE_ROOT = FirebaseDatabase.getInstance().reference
     USER = User()
-    UID = AUTH.currentUser?.uid.toString()
+    CURRENT_UID = AUTH.currentUser?.uid.toString()
 }
 

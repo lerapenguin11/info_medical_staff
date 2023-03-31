@@ -25,12 +25,19 @@ class ChangeNameFragment : Fragment() {
 
         binding.btChengeSave.setOnClickListener{changeName()}
 
+        val fullNameList = USER.fullName.split(" ")
+        binding.etChengeUserName.setText(fullNameList[0])
+        binding.etChengeUserSurname.setText(fullNameList[1])
+
         return binding.root
     }
     override fun onResume() {
         super.onResume()
         initFirebase()
+        //
         changeName()
+
+
     }
 
     private fun changeName(){

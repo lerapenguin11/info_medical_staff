@@ -23,7 +23,7 @@
             android:layout_height="wrap_content"
             android:maxWidth="250dp"
             android:padding="10dp"
-            android:text="Привет! Как дела?"
+            android:text="Добрый день, уважаемые коллеги!"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -58,7 +58,7 @@
             android:layout_height="wrap_content"
             android:maxWidth="250dp"
             android:padding="10dp"
-            android:text="Привет! Как дела?"
+            android:text="Добрый день!"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

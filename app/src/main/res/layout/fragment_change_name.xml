@@ -6,7 +6,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.fragments.ChangeNameFragment">
 
-
     <ImageView
         android:id="@+id/iv_toolbar_chenge"
         android:layout_width="wrap_content"

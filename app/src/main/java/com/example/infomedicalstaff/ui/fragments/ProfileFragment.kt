@@ -8,7 +8,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import com.example.infomedicalstaff.R
+import com.example.infomedicalstaff.business.model.User
 import com.example.infomedicalstaff.databinding.FragmentProfileBinding
+import com.example.infomedicalstaff.utilits.USER
 
 class ProfileFragment : Fragment() {
 
@@ -29,6 +31,7 @@ class ProfileFragment : Fragment() {
     override fun onResume() {
         super.onResume()
         initFunc()
+        addDataProfileDatabase()
     }
 
     private fun initFunc() {
@@ -42,5 +45,11 @@ class ProfileFragment : Fragment() {
             transaction.replace(R.id.main_layout, changeNameFragment)
             transaction.commit()
         }
+    }
+
+    private fun addDataProfileDatabase(){
+        binding.tvNameProfile.setText(USER.fullName)
+        binding.etProfileEmail.setText(USER.email)
+        binding.etProfileUserName.setText(USER.fullName)
     }
 }

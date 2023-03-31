@@ -4,8 +4,14 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.FragmentManager
 import com.example.infomedicalstaff.R
+import com.example.infomedicalstaff.business.model.User
 import com.example.infomedicalstaff.databinding.ActivityMainBinding
 import com.example.infomedicalstaff.ui.fragments.LoginFragment
+import com.example.infomedicalstaff.utilits.*
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.ValueEventListener
+import java.net.URI
 
 class MainActivity : AppCompatActivity() {
 
@@ -23,6 +29,16 @@ class MainActivity : AppCompatActivity() {
 
     private fun initFunc() {
         createLoginFragment()
+        initFirebase()
+        initUser()
+    }
+
+    //обновление данных
+    private fun initUser() {
+        REF_DATABASE_ROOT.child(NODE_USERS).child(UID)
+            .addListenerForSingleValueEvent(AppValueEventListener{
+                USER = it.getValue(User :: class.java)?:User()
+            })
     }
 
     private fun createLoginFragment() {

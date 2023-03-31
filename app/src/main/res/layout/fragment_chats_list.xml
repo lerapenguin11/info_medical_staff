@@ -41,25 +41,37 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_marginTop="24dp"
         android:background="@drawable/chats_background"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/iv_toolbar"
         app:layout_constraintStart_toStartOf="@+id/iv_toolbar"
         app:layout_constraintTop_toBottomOf="@+id/textView">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_chats"
-            android:layout_marginTop="24dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="20dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tools:listitem="@layout/item_chats"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="20dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:itemCount="1"
+            tools:listitem="@layout/item_chats" />
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Создать чат"
+        android:textSize="10sp"
+        android:background="#9b89ff"
+        tools:layout_editor_absoluteX="302dp"
+        tools:layout_editor_absoluteY="16dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

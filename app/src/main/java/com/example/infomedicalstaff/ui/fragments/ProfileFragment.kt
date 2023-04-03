@@ -10,6 +10,7 @@ import androidx.fragment.app.FragmentTransaction
 import com.example.infomedicalstaff.R
 import com.example.infomedicalstaff.business.model.User
 import com.example.infomedicalstaff.databinding.FragmentProfileBinding
+import com.example.infomedicalstaff.utilits.AppStates
 import com.example.infomedicalstaff.utilits.USER
 
 class ProfileFragment : Fragment() {
@@ -51,5 +52,6 @@ class ProfileFragment : Fragment() {
         binding.tvNameProfile.setText(USER.fullName)
         binding.etProfileEmail.setText(USER.email)
         binding.etProfileUserName.setText(USER.fullName)
+        binding.tvProfileStatus.setText(USER.state)
     }
 }

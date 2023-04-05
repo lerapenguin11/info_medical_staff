@@ -31,14 +31,20 @@
 
     <TextView
         android:id="@+id/tv_name_profile"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Лера Коновалова"
         style="@style/TextToolbar"
-        android:textSize="25sp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        app:layout_constraintHorizontal_bias="0"
+        android:layout_gravity="right"
+        android:maxLines= "1"
+        android:ellipsize="end"
+        android:textSize="25sp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/iv_profile"
-        app:layout_constraintTop_toTopOf="@+id/iv_profile" />
+        app:layout_constraintTop_toTopOf="@+id/iv_profile"
+        tools:text="Лера Коноваловggggggаhhhh" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout4"

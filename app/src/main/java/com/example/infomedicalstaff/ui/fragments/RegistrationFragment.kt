@@ -41,7 +41,6 @@ class RegistrationFragment : Fragment() {
                             dateMap[CHILD_EMAIL] = email
                             dateMap[CHILD_USER_NAME] = email
 
-                            REF_DATABASE_ROOT.child(NODE_EMAIL).child("email").setValue(dateMap[CHILD_EMAIL])
                             REF_DATABASE_ROOT.child(NODE_USERS).child(uid).updateChildren(dateMap)
                                 .addOnCompleteListener {it2 ->
                                     if(it2.isSuccessful){

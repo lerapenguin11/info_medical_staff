@@ -49,9 +49,9 @@ class ProfileFragment : Fragment() {
     }
 
     private fun addDataProfileDatabase(){
-        binding.tvNameProfile.setText(USER.fullName)
+        binding.tvNameProfile.setText(USER.userName)
         binding.etProfileEmail.setText(USER.email)
-        binding.etProfileUserName.setText(USER.fullName)
+        binding.etProfileUserName.setText(USER.userName)
         binding.tvProfileStatus.setText(USER.state)
     }
 }

@@ -1,10 +1,10 @@
 package com.example.infomedicalstaff.ui.fragments
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.infomedicalstaff.R
 import com.example.infomedicalstaff.databinding.FragmentChatsListBinding
@@ -33,5 +33,19 @@ class ChatsListFragment : BaseFragment(R.layout.fragment_single_chat) {
 
     override fun onResume() {
         super.onResume()
+        initFun()
+    }
+
+    private fun initFun(){
+        createChat()
+    }
+
+    private fun createChat(){
+        binding.button.setOnClickListener{
+            val contactsFragment = ContactsFragment()
+            val transaction : FragmentTransaction = requireFragmentManager().beginTransaction()
+            transaction.replace(R.id.main_layout, contactsFragment)
+            transaction.commit()
+        }
     }
 }

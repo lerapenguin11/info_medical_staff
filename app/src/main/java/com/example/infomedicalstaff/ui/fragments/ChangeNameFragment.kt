@@ -25,9 +25,9 @@ class ChangeNameFragment : Fragment() {
 
         binding.btChengeSave.setOnClickListener{changeName()}
 
-        val fullNameList = USER.fullName.split(" ")
+        val fullNameList = USER.userName.split(" ")
         binding.etChengeUserName.setText(fullNameList[0])
-        binding.etChengeUserSurname.setText(fullNameList[1])
+//        binding.etChengeUserSurname.setText(fullNameList[1])
 
         return binding.root
     }
@@ -48,11 +48,11 @@ class ChangeNameFragment : Fragment() {
             Toast.makeText(context, "Поле имя не может быть пустым", Toast.LENGTH_LONG).show()
         } else {
             val fullName = "$name $surname"
-            REF_DATABASE_ROOT.child(NODE_USERS).child(CURRENT_UID).child(CHILD_FULL_NAME)
+            REF_DATABASE_ROOT.child(NODE_USERS).child(CURRENT_UID).child(CHILD_USER_NAME)
                 .setValue(fullName).addOnCompleteListener{
                     if(it.isSuccessful){
                         Toast.makeText(context, "Данные обновлены", Toast.LENGTH_LONG).show()
-                        USER.fullName = fullName
+                        USER.userName = fullName
                     }
                 }
         }

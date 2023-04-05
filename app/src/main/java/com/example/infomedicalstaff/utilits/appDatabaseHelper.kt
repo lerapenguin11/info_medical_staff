@@ -1,5 +1,6 @@
 package com.example.infomedicalstaff.utilits
 
+import com.example.infomedicalstaff.business.model.CommonModel
 import com.example.infomedicalstaff.business.model.User
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
@@ -11,6 +12,7 @@ lateinit var USER : User
 lateinit var CURRENT_UID : String
 
 const val NODE_USERS = "users"
+const val NODE_EMAIL = "emails"
 
 const val CHILD_ID = "id"
 const val CHILD_EMAIL = "email"
@@ -28,5 +30,15 @@ fun initFirebase(){
     REF_DATABASE_ROOT = FirebaseDatabase.getInstance().reference
     USER = User()
     CURRENT_UID = AUTH.currentUser?.uid.toString()
+}
+
+fun initContacts(){
+    var arrayContacts = arrayListOf<CommonModel>()
+
+    updateEmailToDatabase(arrayContacts)
+}
+
+fun updateEmailToDatabase(arrayContacts: ArrayList<CommonModel>) {
+
 }
 

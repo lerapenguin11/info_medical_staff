@@ -1,6 +1,6 @@
 package com.example.infomedicalstaff.business.model
 
-data class User(
+data class UserModel(
     val id : String = "",
     var userName : String = "",
     var fullName : String = "",

@@ -3,7 +3,7 @@ package com.example.infomedicalstaff.ui
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.infomedicalstaff.R
-import com.example.infomedicalstaff.business.model.User
+import com.example.infomedicalstaff.business.model.UserModel
 import com.example.infomedicalstaff.databinding.ActivityMainBinding
 import com.example.infomedicalstaff.ui.fragments.LoginFragment
 import com.example.infomedicalstaff.utilits.*
@@ -42,7 +42,7 @@ class MainActivity : AppCompatActivity() {
     private fun initUser() {
         REF_DATABASE_ROOT.child(NODE_USERS).child(CURRENT_UID)
             .addListenerForSingleValueEvent(AppValueEventListener{
-                USER = it.getValue(User :: class.java)?:User()
+                USER = it.getValue(UserModel :: class.java)?:UserModel()
             })
     }
 

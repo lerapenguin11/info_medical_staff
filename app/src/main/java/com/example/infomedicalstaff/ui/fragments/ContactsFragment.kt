@@ -1,22 +1,25 @@
 package com.example.infomedicalstaff.ui.fragments
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.infomedicalstaff.R
 import com.example.infomedicalstaff.business.model.CommonModel
 import com.example.infomedicalstaff.databinding.FragmentContactsBinding
+import com.example.infomedicalstaff.ui.fragments.single.SingleChatFragment
 import com.example.infomedicalstaff.utilits.*
 import com.firebase.ui.database.FirebaseRecyclerAdapter
 import com.firebase.ui.database.FirebaseRecyclerOptions
 import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.ValueEventListener
 
 class ContactsFragment : Fragment() {
     private var _binding : FragmentContactsBinding? = null
@@ -25,6 +28,9 @@ class ContactsFragment : Fragment() {
     private lateinit var mRecyclerView: RecyclerView
     private lateinit var mAdapter : FirebaseRecyclerAdapter<CommonModel, ContactHolder>
     private lateinit var mRefContacts : DatabaseReference
+    private lateinit var mRefUser : DatabaseReference
+    private lateinit var mReceivingUserListener : AppValueEventListener
+    private var mapListener = hashMapOf<DatabaseReference, AppValueEventListener>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -33,7 +39,6 @@ class ContactsFragment : Fragment() {
         // Inflate the layout for this fragment
         _binding = FragmentContactsBinding.inflate(inflater, container, false)
 
-        /*initContacts()*/
         initRecyclerView()
 
         return binding.root
@@ -41,7 +46,12 @@ class ContactsFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
+        initFun()
+    }
+
+    private fun initFun(){
         initRecyclerView()
+        initButtonClickArron()
     }
 
     private fun initRecyclerView() {
@@ -59,22 +69,31 @@ class ContactsFragment : Fragment() {
                 return ContactHolder(view)
             }
 
+            @SuppressLint("SuspiciousIndentation")
             override fun onBindViewHolder(
                 holder: ContactHolder,
                 position: Int,
                 model: CommonModel
             ) {
+                mRefUser = REF_DATABASE_ROOT.child(NODE_USERS).child(model.id)
 
-                var st = ""
-                    if( REF_DATABASE_ROOT.child(NODE_USERS).child(CHILD_FULL_NAME).toString().isEmpty()){
-                        holder.nameUser.text = model.fullName
-                    }else holder.nameUser.text = model.userName
+                mReceivingUserListener = AppValueEventListener {
+                    val contact = it.getCommonModel()
+                    holder.nameUser.text = contact.userName
+                    holder.status.text = contact.state
+                    holder.iconUser.setImageResource(R.drawable.user)
+                    holder.constraintLayout.setOnClickListener {
+                        val singleChatFragment = SingleChatFragment(contact)
+                        val transaction : FragmentTransaction = requireFragmentManager().beginTransaction()
+                        transaction.replace(R.id.main_layout, singleChatFragment)
+                        transaction.commit()
+                    }
+                }
+                mRefUser.addValueEventListener(mReceivingUserListener)
+                mapListener[mRefUser] = mReceivingUserListener
 
 
 
-
-                holder.status.text = model.state
-                holder.iconUser.setImageResource(R.drawable.user)
             }
 
         }
@@ -83,16 +102,28 @@ class ContactsFragment : Fragment() {
         mAdapter.startListening()
     }
 
+    private fun initButtonClickArron(){
+        binding.btArrowContacts.setOnClickListener{
+            val chatListFragment = ChatsListFragment()
+            val transaction : FragmentTransaction = requireFragmentManager().beginTransaction()
+            transaction.replace(R.id.main_layout, chatListFragment)
+            transaction.commit()
+        }
+    }
+
     class ContactHolder(view: View) : RecyclerView.ViewHolder(view) {
         val nameUser : TextView = view.findViewById(R.id.tv_name_user)
         val iconUser : ImageView = view.findViewById(R.id.iv_user)
         val status : TextView = view.findViewById(R.id.tv_user_appearance)
-
+        val constraintLayout : ConstraintLayout = view.findViewById(R.id.constraintLayout_user)
     }
 
     override fun onPause() {
         super.onPause()
         mAdapter.stopListening()
+        mapListener.forEach{
+            it.key.removeEventListener(it.value)
+        }
     }
 }
 

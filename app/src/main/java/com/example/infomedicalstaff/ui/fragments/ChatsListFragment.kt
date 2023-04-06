@@ -38,6 +38,16 @@ class ChatsListFragment : BaseFragment(R.layout.fragment_single_chat) {
 
     private fun initFun(){
         createChat()
+        initButtonClickArrow()
+    }
+
+    private fun initButtonClickArrow() {
+        binding.btArrowChatList.setOnClickListener{
+            val homeFragment = HomeFragment()
+            val transaction : FragmentTransaction = requireFragmentManager().beginTransaction()
+            transaction.replace(R.id.main_layout, homeFragment)
+            transaction.commit()
+        }
     }
 
     private fun createChat(){
@@ -48,4 +58,6 @@ class ChatsListFragment : BaseFragment(R.layout.fragment_single_chat) {
             transaction.commit()
         }
     }
+
+
 }

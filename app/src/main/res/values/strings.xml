@@ -24,4 +24,5 @@
     <string name="profile">Профиль</string>
     <string name="user_name">Имя пользователя</string>
     <string name="user_surname">Введите фамилию</string>
+    <string name="contacts">Контакты</string>
 </resources>

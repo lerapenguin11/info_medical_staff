@@ -8,9 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import com.example.infomedicalstaff.R
-import com.example.infomedicalstaff.business.model.User
 import com.example.infomedicalstaff.databinding.FragmentProfileBinding
-import com.example.infomedicalstaff.utilits.AppStates
 import com.example.infomedicalstaff.utilits.USER
 
 class ProfileFragment : Fragment() {
@@ -37,6 +35,16 @@ class ProfileFragment : Fragment() {
 
     private fun initFunc() {
         createChangeNameFragment()
+        initButtonClickArrow()
+    }
+
+    private fun initButtonClickArrow() {
+        binding.ivArrowProfile.setOnClickListener {
+            val homeFragment = HomeFragment()
+            val transaction : FragmentTransaction = requireFragmentManager().beginTransaction()
+            transaction.replace(R.id.main_layout, homeFragment)
+            transaction.commit()
+        }
     }
 
     private fun createChangeNameFragment() {

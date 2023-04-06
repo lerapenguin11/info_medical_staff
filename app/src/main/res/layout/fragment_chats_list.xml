@@ -18,10 +18,10 @@
         app:srcCompat="@drawable/top_background" />
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/bt_arrow_chat_list"
         android:layout_width="24dp"
         android:layout_height="24dp"
-        android:src="@drawable/left_arrow"
+        android:src="@drawable/left_arrow_white"
         android:layout_marginStart="16dp"
         android:layout_marginTop="24dp"
         app:layout_constraintStart_toStartOf="parent"
@@ -34,10 +34,10 @@
         android:text="@string/workers_chats"
         style="@style/TextToolbar"
         android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView"
+        app:layout_constraintBottom_toBottomOf="@+id/bt_arrow_chat_list"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/iv_toolbar"
-        app:layout_constraintTop_toTopOf="@+id/imageView" />
+        app:layout_constraintTop_toTopOf="@+id/bt_arrow_chat_list" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="0dp"

@@ -15,12 +15,9 @@ import com.example.infomedicalstaff.R
 import com.example.infomedicalstaff.business.model.CommonModel
 import com.example.infomedicalstaff.business.model.UserModel
 import com.example.infomedicalstaff.databinding.FragmentSingleChatBinding
-import com.example.infomedicalstaff.ui.fragments.ChatsListFragment
+import com.example.infomedicalstaff.ui.fragments.chatList.ChatsListFragment
 import com.example.infomedicalstaff.utilits.*
 import com.example.infomedicalstaff.view.adapter.SingleChatAdapter
-import com.google.firebase.database.ChildEventListener
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 
 class SingleChatFragment(private val contact: CommonModel) : Fragment(){
@@ -137,6 +134,7 @@ class SingleChatFragment(private val contact: CommonModel) : Fragment(){
             if(message.isEmpty()){
                 Toast.makeText(context, "Введите сообщение", Toast.LENGTH_LONG).show()
             } else sendMessage(message, contact.id, TYPE_TEXT){
+                saveToMainList(contact.id, TYPE_CHAT)
                 inputMessage.setText("")
             }
         }

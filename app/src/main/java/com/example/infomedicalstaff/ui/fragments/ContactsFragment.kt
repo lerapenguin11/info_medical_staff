@@ -51,7 +51,7 @@ class ContactsFragment : Fragment() {
 
     private fun initFun(){
         initRecyclerView()
-        initButtonClickArron()
+        //initButtonClickArron()
     }
 
     private fun initRecyclerView() {
@@ -102,14 +102,14 @@ class ContactsFragment : Fragment() {
         mAdapter.startListening()
     }
 
-    private fun initButtonClickArron(){
+    /*private fun initButtonClickArron(){
         binding.btArrowContacts.setOnClickListener{
             val chatListFragment = ChatsListFragment()
             val transaction : FragmentTransaction = requireFragmentManager().beginTransaction()
             transaction.replace(R.id.main_layout, chatListFragment)
             transaction.commit()
         }
-    }
+    }*/
 
     class ContactHolder(view: View) : RecyclerView.ViewHolder(view) {
         val nameUser : TextView = view.findViewById(R.id.tv_name_user)

@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.FragmentTransaction
 import com.example.infomedicalstaff.R
 import com.example.infomedicalstaff.databinding.FragmentHomeBinding
+import com.example.infomedicalstaff.ui.fragments.chatList.ChatsListFragment
 
 class HomeFragment : Fragment() {
     private var _binding : FragmentHomeBinding? = null

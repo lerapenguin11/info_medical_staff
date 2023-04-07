@@ -15,6 +15,7 @@ lateinit var CURRENT_UID : String
 
 const val NODE_USERS = "users"
 const val NODE_MESSAGE = "message"
+const val NODE_CHAT_LIST = "chat_list"
 
 const val CHILD_ID = "id"
 const val CHILD_EMAIL = "email"
@@ -60,6 +61,33 @@ fun sendMessage(message: String, receivingUserId: String, typeText: String, func
 
     REF_DATABASE_ROOT
         .updateChildren(mapDialog)
+        .addOnSuccessListener { function() }
+}
+
+fun saveToMainList(id: String, type: String) {
+    val refUser = "$NODE_CHAT_LIST/$CURRENT_UID/$id"
+    val refReceived = "$NODE_CHAT_LIST/$id/$CURRENT_UID"
+
+    val mapUser = hashMapOf<String, Any>()
+    val mapReceived = hashMapOf<String, Any>()
+
+    mapUser[CHILD_ID] = id
+    mapUser[CHILD_TYPE] = type
+    mapUser[CHILD_TIME_STAMP] = ServerValue.TIMESTAMP
+
+    mapReceived[CHILD_ID] = CURRENT_UID
+    mapReceived[CHILD_TYPE] = type
+    mapReceived[CHILD_TIME_STAMP] = ServerValue.TIMESTAMP
+
+    val commonMap = hashMapOf<String, Any>()
+    commonMap[refUser] = mapUser
+    commonMap[refReceived] = mapReceived
+
+    REF_DATABASE_ROOT.updateChildren(commonMap)
+}
+
+fun deleteChat(id: String, function: () -> Unit) {
+    REF_DATABASE_ROOT.child(NODE_CHAT_LIST).child(CURRENT_UID).child(id).removeValue()
         .addOnSuccessListener { function() }
 }
 

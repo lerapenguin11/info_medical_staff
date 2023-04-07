@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import com.example.infomedicalstaff.R
@@ -58,6 +59,7 @@ class SingleChatFragment(private val contact: CommonModel) : Fragment(){
 
     private fun initFun() {
         buttonClickArrow()
+        buttonClickMessage()
     }
 
     private fun buttonClickArrow() {
@@ -68,6 +70,18 @@ class SingleChatFragment(private val contact: CommonModel) : Fragment(){
             transaction.commit()
 
             //mRefUser.removeEventListener(mListenerInfoToolbar)
+        }
+    }
+
+    private fun buttonClickMessage(){
+        binding.btPlaneMessageSingleChat.setOnClickListener {
+            val inputMessage = binding.etInputMessage
+            val  message = inputMessage.text.toString()
+            if(message.isEmpty()){
+                Toast.makeText(context, "Введите сообщение", Toast.LENGTH_LONG).show()
+            } else sendMessage(message, contact.id, TYPE_TEXT){
+                inputMessage.setText("удаленное сообщение")
+            }
         }
     }
 

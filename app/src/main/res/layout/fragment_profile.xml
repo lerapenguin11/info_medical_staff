@@ -7,7 +7,6 @@
     android:layout_height="match_parent"
     tools:context=".ui.fragments.ProfileFragment">
 
-
     <ImageView
         android:id="@+id/iv_toolbar_profile"
         android:layout_width="wrap_content"
@@ -44,7 +43,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/iv_profile"
         app:layout_constraintTop_toTopOf="@+id/iv_profile"
-        tools:text="Лера Коноваловggggggаhhhh" />
+        tools:text="Лера Коноваловggggggаhhhh"/>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout4"
@@ -57,60 +56,96 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/iv_toolbar_profile">
 
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/bt_profile_edit"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/background_add_photo_user"
+            app:layout_constraintBottom_toTopOf="@+id/bt_photo_profile_edit"
+            app:layout_constraintEnd_toEndOf="@+id/bt_photo_profile_edit">
+
+            <ImageView
+                android:id="@+id/iv_create_pen"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_create"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/bt_photo_profile_edit"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginBottom="40dp"
+            android:background="@drawable/background_add_photo_user"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/et_profile_user_post">
+
+
+            <ImageView
+                android:id="@+id/iv_photo_camera"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_photo_camera"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
         <EditText
             android:id="@+id/et_profile_email"
+            style="@style/TextHint"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:hint="Email"
-            android:layout_marginTop="30dp"
-            android:layout_marginStart="30dp"
-            android:layout_marginEnd="30dp"
+            android:layout_height="55dp"
+            android:layout_marginStart="35dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginEnd="35dp"
             android:background="@drawable/background_profile_et"
+            android:ems="10"
+            android:hint="@string/email"
+            android:inputType="textPersonName"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="TextFields" />
 
         <EditText
             android:id="@+id/et_profile_user_name"
+            style="@style/TextHint"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="55dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="35dp"
+            android:layout_marginEnd="35dp"
             android:background="@drawable/background_profile_et"
             android:ems="10"
-            android:hint="Имя пользователя"
+            android:hint="@string/name_user"
             android:inputType="textPersonName"
-            android:layout_marginTop="30dp"
-            android:layout_marginStart="30dp"
-            android:layout_marginEnd="30dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/et_profile_email" />
 
         <EditText
             android:id="@+id/et_profile_user_post"
+            style="@style/TextHint"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="55dp"
             android:layout_marginStart="30dp"
-            android:layout_marginTop="30dp"
-            android:layout_marginEnd="30dp"
+            android:layout_marginTop="35dp"
+            android:layout_marginEnd="35dp"
             android:background="@drawable/background_profile_et"
             android:ems="10"
-            android:hint="Должность"
+            android:hint="@string/post"
             android:inputType="textPersonName"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/et_profile_user_name" />
 
-        <Button
-            android:id="@+id/bt_profile_edit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="44dp"
-            android:text="Редактировать профиль"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/et_profile_user_post" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <ImageView
@@ -145,6 +180,4 @@
         app:layout_constraintStart_toStartOf="@+id/tv_name_profile"
         app:layout_constraintTop_toBottomOf="@+id/tv_name_profile"
         tools:text="В сети" />
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>

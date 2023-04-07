@@ -25,4 +25,6 @@
     <string name="user_name">Имя пользователя</string>
     <string name="user_surname">Введите фамилию</string>
     <string name="contacts">Контакты</string>
+    <string name="name_user">Имя пользователя</string>
+    <string name="post">Должность</string>
 </resources>

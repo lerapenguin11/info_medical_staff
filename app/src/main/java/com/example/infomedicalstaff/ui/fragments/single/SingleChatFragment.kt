@@ -8,14 +8,16 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.infomedicalstaff.R
 import com.example.infomedicalstaff.business.model.CommonModel
 import com.example.infomedicalstaff.business.model.UserModel
 import com.example.infomedicalstaff.databinding.FragmentSingleChatBinding
 import com.example.infomedicalstaff.ui.fragments.ChatsListFragment
 import com.example.infomedicalstaff.utilits.*
+import com.example.infomedicalstaff.view.adapter.SingleChatAdapter
 import com.google.firebase.database.DatabaseReference
-
 
 class SingleChatFragment(private val contact: CommonModel) : Fragment(){
 
@@ -25,6 +27,11 @@ class SingleChatFragment(private val contact: CommonModel) : Fragment(){
     private lateinit var mListenerInfoToolbar : AppValueEventListener
     private lateinit var mReceivingUserModel : UserModel
     private lateinit var mRefUser : DatabaseReference
+    private lateinit var mRefMessage : DatabaseReference
+    private lateinit var mAdapter : SingleChatAdapter
+    private lateinit var mRecyclerView: RecyclerView
+    private lateinit var mMessageListener : AppValueEventListener
+    private var mListMessages = emptyList<CommonModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -39,27 +46,41 @@ class SingleChatFragment(private val contact: CommonModel) : Fragment(){
 
     override fun onResume() {
         super.onResume()
-        initFun()
+        initInfoToolbar()
+        initRecyclerView()
+        buttonClickArrow()
+        buttonClickMessage()
 
+    }
+
+    @SuppressLint("ResourceType")
+    private fun initInfoToolbar() {
         mListenerInfoToolbar = AppValueEventListener {
             mReceivingUserModel = it.getUserModel()
-            initInfoToolbar()
+            binding.tvToolbarNameChat.text = mReceivingUserModel.userName
+            binding.tvStateProfile.text = mReceivingUserModel.state
+            //binding.profileImage.setCircleBackgroundColorResource(R.drawable.user)
         }
 
         mRefUser = REF_DATABASE_ROOT.child(NODE_USERS).child(contact.id)
         mRefUser.addValueEventListener(mListenerInfoToolbar)
     }
 
-    @SuppressLint("ResourceType")
-    private fun initInfoToolbar() {
-        //binding.profileImage.setCircleBackgroundColorResource(R.drawable.user)
-        binding.tvToolbarNameChat.text = mReceivingUserModel.userName
-        binding.tvStateProfile.text = mReceivingUserModel.state
-    }
+    private fun initRecyclerView() {
+        mRecyclerView = binding.rvSingleChat
+        mAdapter = SingleChatAdapter()
+        mRefMessage = REF_DATABASE_ROOT.child(NODE_MESSAGE)
+            .child(CURRENT_UID)
+            .child(contact.id)
+        mRecyclerView.layoutManager = LinearLayoutManager(context)
+        mRecyclerView.adapter = mAdapter
+        mMessageListener = AppValueEventListener { dataSnapshot ->
+            mListMessages = dataSnapshot.children.map { it.getCommonModel() }
+            mAdapter.setList(mListMessages)
+            mRecyclerView.smoothScrollToPosition(mAdapter.itemCount)
+        }
 
-    private fun initFun() {
-        buttonClickArrow()
-        buttonClickMessage()
+        mRefMessage.addValueEventListener(mMessageListener)
     }
 
     private fun buttonClickArrow() {
@@ -80,7 +101,7 @@ class SingleChatFragment(private val contact: CommonModel) : Fragment(){
             if(message.isEmpty()){
                 Toast.makeText(context, "Введите сообщение", Toast.LENGTH_LONG).show()
             } else sendMessage(message, contact.id, TYPE_TEXT){
-                inputMessage.setText("удаленное сообщение")
+                inputMessage.setText("")
             }
         }
     }
@@ -88,5 +109,6 @@ class SingleChatFragment(private val contact: CommonModel) : Fragment(){
     override fun onPause() {
         super.onPause()
         buttonClickArrow()
+        mRefMessage.removeEventListener(mMessageListener)
     }
 }

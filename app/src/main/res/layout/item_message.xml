@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/block_message_user"
@@ -23,7 +23,7 @@
             android:layout_height="wrap_content"
             android:maxWidth="250dp"
             android:padding="10dp"
-            android:text="Добрый день, уважаемые коллеги!"
+            tools:text="Добрый день, уважаемые коллеги!"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -35,7 +35,7 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="10dp"
             android:maxWidth="250dp"
-            android:text="10:23"
+            tools:text="10:23"
             android:layout_marginBottom="2dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -58,7 +58,7 @@
             android:layout_height="wrap_content"
             android:maxWidth="250dp"
             android:padding="10dp"
-            android:text="Добрый день!"
+            tools:text="Добрый день!"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -71,7 +71,7 @@
             android:layout_marginEnd="10dp"
             android:layout_marginBottom="2dp"
             android:maxWidth="250dp"
-            android:text="10:23"
+            tools:text="10:23"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_message_receiving" />

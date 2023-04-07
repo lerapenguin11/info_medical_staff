@@ -14,7 +14,7 @@ lateinit var USER : UserModel
 lateinit var CURRENT_UID : String
 
 const val NODE_USERS = "users"
-const val NOSE_MESSAGE = "message"
+const val NODE_MESSAGE = "message"
 
 const val CHILD_ID = "id"
 const val CHILD_EMAIL = "email"
@@ -44,8 +44,8 @@ fun DataSnapshot.getUserModel() : UserModel =
     this.getValue(UserModel :: class.java) ?: UserModel()
 
 fun sendMessage(message: String, receivingUserId: String, typeText: String, function: () -> Unit) {
-    val refDialogUser = "$NOSE_MESSAGE/$CURRENT_UID/$receivingUserId"
-    val refDialogReceivingUser = "$NOSE_MESSAGE/$receivingUserId/$CURRENT_UID"
+    val refDialogUser = "$NODE_MESSAGE/$CURRENT_UID/$receivingUserId"
+    val refDialogReceivingUser = "$NODE_MESSAGE/$receivingUserId/$CURRENT_UID"
     val messageKey = REF_DATABASE_ROOT.child(refDialogUser).push().key
 
     val mapMessage = hashMapOf<String, Any>()
@@ -60,6 +60,6 @@ fun sendMessage(message: String, receivingUserId: String, typeText: String, func
 
     REF_DATABASE_ROOT
         .updateChildren(mapDialog)
-        .addOnSuccessListener { function }
+        .addOnSuccessListener { function() }
 }
 

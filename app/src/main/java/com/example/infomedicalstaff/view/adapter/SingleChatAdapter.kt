@@ -6,12 +6,16 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.paging.DifferCallback
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.DiffUtil.DiffResult
 import androidx.recyclerview.widget.RecyclerView
 import butterknife.BindView
 import butterknife.ButterKnife
 import com.example.infomedicalstaff.R
 import com.example.infomedicalstaff.business.model.CommonModel
 import com.example.infomedicalstaff.utilits.CURRENT_UID
+import com.example.infomedicalstaff.utilits.DiffUtilCallback
 import com.example.infomedicalstaff.utilits.asTime
 import java.text.SimpleDateFormat
 import java.util.*
@@ -19,6 +23,7 @@ import java.util.*
 class SingleChatAdapter : RecyclerView.Adapter<SingleChatAdapter.SingleChatViewHolder>() {
 
     private var mListMessageCache = emptyList<CommonModel>()
+    private lateinit var mDiffResult : DiffResult
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SingleChatViewHolder {
 
@@ -49,8 +54,19 @@ class SingleChatAdapter : RecyclerView.Adapter<SingleChatAdapter.SingleChatViewH
 
     @SuppressLint("NotifyDataSetChanged")
     fun setList(list : List<CommonModel>){
+        mDiffResult = DiffUtil.calculateDiff(DiffUtilCallback(mListMessageCache, list))
+        mDiffResult.dispatchUpdatesTo(this)
         mListMessageCache = list
-        notifyDataSetChanged()
+        //notifyDataSetChanged()
+    }
+
+    fun addItem(item:CommonModel){
+        val newList = mutableListOf<CommonModel>()
+        newList.addAll(mListMessageCache)
+        newList.add(item)
+        mDiffResult = DiffUtil.calculateDiff(DiffUtilCallback(mListMessageCache,newList))
+        mDiffResult.dispatchUpdatesTo(this)
+        mListMessageCache = newList
     }
 
     @SuppressLint("NonConstantResourceId")

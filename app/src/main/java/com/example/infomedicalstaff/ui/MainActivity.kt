@@ -14,13 +14,14 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
+        APP_ACTIVITY = this
         setContentView(binding.root)
     }
 
     override fun onStart() {
         super.onStart()
         initFunc()
-
+        hideKeyboard()
         //обновление статуса -> в сети
         AppStates.updateState(AppStates.ONLINE)
     }

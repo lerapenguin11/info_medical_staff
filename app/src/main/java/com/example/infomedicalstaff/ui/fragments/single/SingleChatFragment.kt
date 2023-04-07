@@ -17,6 +17,9 @@ import com.example.infomedicalstaff.databinding.FragmentSingleChatBinding
 import com.example.infomedicalstaff.ui.fragments.ChatsListFragment
 import com.example.infomedicalstaff.utilits.*
 import com.example.infomedicalstaff.view.adapter.SingleChatAdapter
+import com.google.firebase.database.ChildEventListener
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 
 class SingleChatFragment(private val contact: CommonModel) : Fragment(){
@@ -30,8 +33,8 @@ class SingleChatFragment(private val contact: CommonModel) : Fragment(){
     private lateinit var mRefMessage : DatabaseReference
     private lateinit var mAdapter : SingleChatAdapter
     private lateinit var mRecyclerView: RecyclerView
-    private lateinit var mMessageListener : AppValueEventListener
-    private var mListMessages = emptyList<CommonModel>()
+    private lateinit var mMessageListener : ChildEventListener
+    private var mListMessages = mutableListOf<CommonModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -74,13 +77,31 @@ class SingleChatFragment(private val contact: CommonModel) : Fragment(){
             .child(contact.id)
         mRecyclerView.layoutManager = LinearLayoutManager(context)
         mRecyclerView.adapter = mAdapter
-        mMessageListener = AppValueEventListener { dataSnapshot ->
-            mListMessages = dataSnapshot.children.map { it.getCommonModel() }
-            mAdapter.setList(mListMessages)
-            mRecyclerView.smoothScrollToPosition(mAdapter.itemCount)
+        mMessageListener = object : ChildEventListener {
+            override fun onChildAdded(snapshot: DataSnapshot, previousChildName: String?) {
+                mAdapter.addItem(snapshot.getCommonModel())
+                mRecyclerView.smoothScrollToPosition(mAdapter.itemCount)
+            }
+
+            override fun onChildChanged(snapshot: DataSnapshot, previousChildName: String?) {
+
+            }
+
+            override fun onChildRemoved(snapshot: DataSnapshot) {
+
+            }
+
+            override fun onChildMoved(snapshot: DataSnapshot, previousChildName: String?) {
+
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+
         }
 
-        mRefMessage.addValueEventListener(mMessageListener)
+        mRefMessage.addChildEventListener(mMessageListener)
     }
 
     private fun buttonClickArrow() {

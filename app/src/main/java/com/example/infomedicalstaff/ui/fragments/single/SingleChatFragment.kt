@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AbsListView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
@@ -33,8 +34,10 @@ class SingleChatFragment(private val contact: CommonModel) : Fragment(){
     private lateinit var mRefMessage : DatabaseReference
     private lateinit var mAdapter : SingleChatAdapter
     private lateinit var mRecyclerView: RecyclerView
-    private lateinit var mMessageListener : ChildEventListener
-    private var mListMessages = mutableListOf<CommonModel>()
+    private lateinit var mMessageListener : AppChildEventListener
+    private var mCountMessage = 10
+    private var mIsScrolling = false
+    private var mSmoothScrolling = true
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -77,31 +80,42 @@ class SingleChatFragment(private val contact: CommonModel) : Fragment(){
             .child(contact.id)
         mRecyclerView.layoutManager = LinearLayoutManager(context)
         mRecyclerView.adapter = mAdapter
-        mMessageListener = object : ChildEventListener {
-            override fun onChildAdded(snapshot: DataSnapshot, previousChildName: String?) {
-                mAdapter.addItem(snapshot.getCommonModel())
+
+        mMessageListener = AppChildEventListener {
+            mAdapter.addItem(it.getCommonModel())
+            if (mSmoothScrolling) {
                 mRecyclerView.smoothScrollToPosition(mAdapter.itemCount)
-            }
-
-            override fun onChildChanged(snapshot: DataSnapshot, previousChildName: String?) {
-
-            }
-
-            override fun onChildRemoved(snapshot: DataSnapshot) {
-
-            }
-
-            override fun onChildMoved(snapshot: DataSnapshot, previousChildName: String?) {
-
-            }
-
-            override fun onCancelled(error: DatabaseError) {
-
             }
 
         }
 
-        mRefMessage.addChildEventListener(mMessageListener)
+        mRefMessage.limitToLast(mCountMessage).addChildEventListener(mMessageListener)
+
+        mRecyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+                super.onScrollStateChanged(recyclerView, newState)
+
+                if (newState == AbsListView.OnScrollListener.SCROLL_STATE_TOUCH_SCROLL){
+                    mIsScrolling = true
+                }
+            }
+
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                super.onScrolled(recyclerView, dx, dy)
+
+                if (mIsScrolling && dy < 0) {
+                    updateData()
+                }
+            }
+
+        })
+    }
+
+    private fun updateData() {
+        mSmoothScrolling = false
+        mIsScrolling = false
+        mCountMessage += 10
+        mRefMessage.limitToFirst(mCountMessage).addChildEventListener(mMessageListener)
     }
 
     private fun buttonClickArrow() {
@@ -117,6 +131,7 @@ class SingleChatFragment(private val contact: CommonModel) : Fragment(){
 
     private fun buttonClickMessage(){
         binding.btPlaneMessageSingleChat.setOnClickListener {
+            mSmoothScrolling = true
             val inputMessage = binding.etInputMessage
             val  message = inputMessage.text.toString()
             if(message.isEmpty()){

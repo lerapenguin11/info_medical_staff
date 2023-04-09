@@ -13,6 +13,7 @@ import com.example.infomedicalstaff.databinding.FragmentChatsListBinding
 import com.example.infomedicalstaff.ui.fragments.BaseFragment
 import com.example.infomedicalstaff.ui.fragments.ContactsFragment
 import com.example.infomedicalstaff.ui.fragments.HomeFragment
+import com.example.infomedicalstaff.ui.fragments.groups.AddContactsFragment
 import com.example.infomedicalstaff.utilits.*
 import com.example.infomedicalstaff.view.adapter.ChatsListAdapter
 
@@ -77,10 +78,16 @@ class ChatsListFragment() : BaseFragment(R.layout.fragment_single_chat) {
     }
 
     private fun createChat(){
-        binding.button.setOnClickListener{
+        /*binding.button.setOnClickListener{
             val contactsFragment = ContactsFragment()
             val transaction : FragmentTransaction = requireFragmentManager().beginTransaction()
             transaction.replace(R.id.main_layout, contactsFragment)
+            transaction.commit()
+        }*/
+        binding.button.setOnClickListener{
+            val addContactsFragment = AddContactsFragment()
+            val transaction : FragmentTransaction = requireFragmentManager().beginTransaction()
+            transaction.replace(R.id.main_layout, addContactsFragment)
             transaction.commit()
         }
     }

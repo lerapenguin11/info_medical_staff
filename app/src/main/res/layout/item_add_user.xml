@@ -1,14 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/background">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout_add"
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:layout_marginBottom="16dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="25dp"
         app:layout_constraintVertical_bias="0"
         android:background="@drawable/item_chats_background"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -34,7 +39,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:maxLength="15"
-            android:text="Лера Коновалова"
+            tools:text="Лера Коновалова"
             app:layout_constraintStart_toEndOf="@+id/iv_add_user"
             app:layout_constraintTop_toTopOf="@+id/iv_add_user" />
 
@@ -46,22 +51,14 @@
             android:layout_marginStart="20dp"
             android:maxLength="24"
             android:maxLines="1"
-            android:text="Был/была в сети в "
+            tools:text="Был/была в сети в "
             app:layout_constraintBottom_toBottomOf="@+id/iv_add_user"
             app:layout_constraintEnd_toEndOf="@+id/tv_add_name_user"
             app:layout_constraintHorizontal_bias="0"
             app:layout_constraintStart_toEndOf="@+id/iv_add_user" />
 
-        <TextView
-            android:id="@+id/tv_add_user_time"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="12:00"
-            style="@style/DescrChats"
-            app:layout_constraintBottom_toBottomOf="@+id/tv_add_user_appearance"
-            app:layout_constraintStart_toEndOf="@+id/tv_add_user_appearance" />
-
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_add_choice"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_marginEnd="16dp"
@@ -72,7 +69,7 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
-                android:id="@+id/imageView2"
+                android:id="@+id/iv_add_choice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:layout_constraintBottom_toBottomOf="parent"

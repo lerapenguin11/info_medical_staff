@@ -4,10 +4,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.RecyclerView
 import com.example.infomedicalstaff.R
 import com.example.infomedicalstaff.business.model.CommonModel
+import com.example.infomedicalstaff.ui.fragments.HomeFragment
+import com.example.infomedicalstaff.ui.fragments.chatList.ChatsListFragment
+import com.example.infomedicalstaff.ui.fragments.single.SingleChatFragment
 import com.example.infomedicalstaff.utilits.asTime
+import com.example.infomedicalstaff.utilits.replaceFragment
 
 class ChatsListAdapter : RecyclerView.Adapter<ChatsListAdapter.ChatsViewHolder>() {
 
@@ -15,8 +20,13 @@ class ChatsListAdapter : RecyclerView.Adapter<ChatsListAdapter.ChatsViewHolder>(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ChatsViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_chats, parent, false)
+        val holder = ChatsViewHolder(view)
 
-        return ChatsViewHolder(view)
+        holder.itemView.setOnClickListener {
+            replaceFragment(SingleChatFragment(listItems[holder.adapterPosition]))
+        }
+
+        return holder
     }
 
     override fun getItemCount(): Int = listItems.size
@@ -25,7 +35,6 @@ class ChatsListAdapter : RecyclerView.Adapter<ChatsListAdapter.ChatsViewHolder>(
         holder.textGroup.text = listItems[position].lastMessage
         //holder.iconGroup.setBackgroundResource(R.drawable.user)
         //holder.time.text = listItems[position].timeStamp.toString().asTime()
-
     }
 
     fun updateListItem(item : CommonModel){

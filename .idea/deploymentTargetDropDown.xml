@@ -7,11 +7,11 @@
         <deviceKey>
           <Key>
             <type value="VIRTUAL_DEVICE_PATH" />
-            <value value="C:\Users\lerap\.android\avd\text_2.avd" />
+            <value value="C:\Users\lerap\.android\avd\User_3.avd" />
           </Key>
         </deviceKey>
       </Target>
     </targetSelectedWithDropDown>
-    <timeTargetWasSelectedWithDropDown value="2023-04-05T14:07:07.218505300Z" />
+    <timeTargetWasSelectedWithDropDown value="2023-04-10T03:55:42.774106600Z" />
   </component>
 </project>

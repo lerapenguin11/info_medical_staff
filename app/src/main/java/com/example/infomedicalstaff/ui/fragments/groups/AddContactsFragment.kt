@@ -28,13 +28,11 @@ class AddContactsFragment : Fragment() {
     private val binding get() = _binding!!
 
     private lateinit var mRecyclerView: RecyclerView
-    private lateinit var mAdapter : FirebaseRecyclerAdapter<CommonModel, AddContactsFragment.AddContactHolder>
-    private lateinit var mRefContacts : DatabaseReference
-    private lateinit var mRefUser : DatabaseReference
-    private lateinit var mReceivingUserListener : AppValueEventListener
-    private var mapListener = hashMapOf<DatabaseReference, AppValueEventListener>()
-    val listItems = mutableListOf<CommonModel>()
-
+    private lateinit var mAdapter: AddContactsAdapter
+    private val mRefUsers = REF_DATABASE_ROOT.child(NODE_USERS).child(CURRENT_UID)
+    private val mRefContacts = REF_DATABASE_ROOT.child(NODE_USERS)
+    private val mRefMessages = REF_DATABASE_ROOT.child(NODE_MESSAGE).child(CURRENT_UID)
+    private var mListItems = listOf<CommonModel>()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -47,78 +45,20 @@ class AddContactsFragment : Fragment() {
         return binding.root
     }
 
+
+
     override fun onResume() {
         super.onResume()
-        initFun()
-
+        initRecyclerView()
         binding.button2Add.setOnClickListener{
             listContacts.forEach {
                 println(it.id)
+                replaceFragment(CreateGroupChatFragment(listContacts))
             }
         }
-    }
 
-    private fun initFun(){
-        initRecyclerView()
         initButtonClickArron()
     }
-
-    private fun initRecyclerView() {
-        mRecyclerView = binding.rvAddContacts
-        mRefContacts = REF_DATABASE_ROOT.child(NODE_USERS)
-
-        val options = FirebaseRecyclerOptions.Builder<CommonModel>()
-            .setQuery(mRefContacts, CommonModel::class.java)
-            .build()
-
-        mAdapter = object : FirebaseRecyclerAdapter<CommonModel, AddContactsFragment.AddContactHolder>(options){
-            override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AddContactsFragment.AddContactHolder {
-                val view = LayoutInflater.from(parent.context).inflate(R.layout.item_add_user, parent, false)
-
-                return AddContactsFragment.AddContactHolder(view)
-            }
-
-            @SuppressLint("SuspiciousIndentation")
-            override fun onBindViewHolder(
-                holder: AddContactsFragment.AddContactHolder,
-                position: Int,
-                model: CommonModel
-            ) {
-                mRefUser = REF_DATABASE_ROOT.child(NODE_USERS).child(model.id)
-                listItems.add(model)
-
-                mReceivingUserListener = AppValueEventListener {
-                    val contact = it.getCommonModel()
-                    holder.addNameGroup.text = contact.userName
-                    holder.addStateGroup.text = contact.state
-                    holder.itemView.setOnClickListener {
-                        //replaceFragment(SingleChatFragment(listItems[holder.adapterPosition]))
-                        if(listItems[holder.absoluteAdapterPosition].choice){
-                            holder.addChoice.visibility = View.INVISIBLE
-                            listItems[holder.absoluteAdapterPosition].choice = false
-                            listContacts.remove(listItems[holder.absoluteAdapterPosition])
-
-                        } else {
-                            holder.addChoice.visibility = View.VISIBLE
-                            listItems[holder.absoluteAdapterPosition].choice = true
-                            listContacts.add(listItems[holder.absoluteAdapterPosition])
-
-                        }
-                    }
-                }
-                mRefUser.addValueEventListener(mReceivingUserListener)
-                mapListener[mRefUser] = mReceivingUserListener
-
-
-
-            }
-
-        }
-        mRecyclerView.setLayoutManager(LinearLayoutManager(context))
-        mRecyclerView.adapter = mAdapter
-        mAdapter.startListening()
-    }
-
     private fun initButtonClickArron(){
         binding.btArrowAddContacts.setOnClickListener{
             val chatListFragment = ChatsListFragment()
@@ -128,19 +68,61 @@ class AddContactsFragment : Fragment() {
         }
     }
 
-    class AddContactHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val addNameGroup : TextView = view.findViewById(R.id.tv_add_name_user)
-        val addStateGroup : TextView = view.findViewById(R.id.tv_add_user_appearance)
-        //val iconGroup : CircleImageView = view.findViewById(R.id.iv_add_user)
-        val addChoice : ConstraintLayout = view.findViewById(R.id.cl_add_choice)
-    }
+    //TODO попровить
+    private fun initRecyclerView() {
+        mRecyclerView = binding.rvAddContacts
+        mAdapter = AddContactsAdapter()
 
-    override fun onPause() {
-        super.onPause()
-        mAdapter.stopListening()
-        mapListener.forEach{
-            it.key.removeEventListener(it.value)
-        }
+        mRefContacts.addListenerForSingleValueEvent(AppValueEventListener{
+            mListItems = it.children.map { it.getCommonModel() }
+
+            mListItems.forEach{model ->
+                mRefUsers.child(model.id).addListenerForSingleValueEvent(AppValueEventListener{
+                    if (model.fullName.isEmpty()) {
+                        model.fullName = model.userName
+                        model.state = model.state
+                    }
+                    mAdapter.updateListItem(model)
+                })
+            }
+        })
+
+        mRecyclerView.layoutManager = LinearLayoutManager(context)
+        mRecyclerView.adapter = mAdapter
+       /* mRecyclerView = binding.rvAddContacts
+        mAdapter = AddContactsAdapter()
+
+        // 1 запрос
+        mRefContacts.addListenerForSingleValueEvent(AppValueEventListener { dataSnapshot ->
+            mListItems = dataSnapshot.children.map { it.getCommonModel() }
+            mListItems.forEach { model ->
+                // 2 запрос
+                mRefUsers.child(model.id)
+                    .addListenerForSingleValueEvent(AppValueEventListener { dataSnapshot1 ->
+                        val newModel = dataSnapshot1.getCommonModel()
+
+                        // 3 запрос
+                        mRefMessages.child(model.id).limitToLast(1)
+                            .addListenerForSingleValueEvent(AppValueEventListener { dataSnapshot2 ->
+                                val tempList = dataSnapshot2.children.map { it.getCommonModel() }
+
+                                if (tempList.isEmpty()){
+                                    newModel.lastMessage = "Чат очищен"
+                                } else {
+                                    newModel.lastMessage = tempList[0].text
+                                }
+
+
+                                if (newModel.fullName.isEmpty()) {
+                                    newModel.fullName = newModel.userName
+                                }
+                                mAdapter.updateListItem(newModel)
+                            })
+                    })
+            }
+        })
+        mRecyclerView.layoutManager = LinearLayoutManager(context)
+        mRecyclerView.adapter = mAdapter*/
     }
 
     companion object{

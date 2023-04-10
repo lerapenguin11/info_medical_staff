@@ -1,4 +1,4 @@
-package com.example.infomedicalstaff.ui.fragments.single
+package com.example.infomedicalstaff.ui.fragments.groups
 
 import android.annotation.SuppressLint
 import android.os.Bundle
@@ -20,7 +20,7 @@ import com.example.infomedicalstaff.utilits.*
 import com.example.infomedicalstaff.view.adapter.SingleChatAdapter
 import com.google.firebase.database.DatabaseReference
 
-class SingleChatFragment(private val contact: CommonModel) : Fragment(){
+class GroupsChatFragment(private val group: CommonModel) : Fragment(){
 
     private var _binding : FragmentSingleChatBinding? = null
     private val binding get() = _binding!!
@@ -29,7 +29,7 @@ class SingleChatFragment(private val contact: CommonModel) : Fragment(){
     private lateinit var mReceivingUserModel : UserModel
     private lateinit var mRefUser : DatabaseReference
     private lateinit var mRefMessage : DatabaseReference
-    private lateinit var mAdapter : SingleChatAdapter
+    private lateinit var mAdapter : GroupsChatAdapter
     private lateinit var mRecyclerView: RecyclerView
     private lateinit var mMessageListener : AppChildEventListener
     private var mCountMessage = 10
@@ -56,25 +56,25 @@ class SingleChatFragment(private val contact: CommonModel) : Fragment(){
 
     }
 
+
+
     @SuppressLint("ResourceType")
     private fun initInfoToolbar() {
         mListenerInfoToolbar = AppValueEventListener {
             mReceivingUserModel = it.getUserModel()
-            binding.tvToolbarNameChat.setText("terapy")
-            //binding.tvStateProfile.text = mReceivingUserModel.state
-            //binding.profileImage.setCircleBackgroundColorResource(R.drawable.user)
         }
 
-        mRefUser = REF_DATABASE_ROOT.child(NODE_USERS).child(contact.id)
+        mRefUser = REF_DATABASE_ROOT.child(NODE_USERS).child(group.id)
         mRefUser.addValueEventListener(mListenerInfoToolbar)
     }
 
     private fun initRecyclerView() {
         mRecyclerView = binding.rvSingleChat
-        mAdapter = SingleChatAdapter()
-        mRefMessage = REF_DATABASE_ROOT.child(NODE_MESSAGE)
-            .child(CURRENT_UID)
-            .child(contact.id)
+        mAdapter = GroupsChatAdapter()
+        mRefMessage = REF_DATABASE_ROOT
+            .child(NODE_GROUPS)
+            .child(group.id)
+            .child(NODE_MESSAGE)
         mRecyclerView.layoutManager = LinearLayoutManager(context)
         mRecyclerView.adapter = mAdapter
 
@@ -133,8 +133,7 @@ class SingleChatFragment(private val contact: CommonModel) : Fragment(){
             val  message = inputMessage.text.toString()
             if(message.isEmpty()){
                 Toast.makeText(context, "Введите сообщение", Toast.LENGTH_LONG).show()
-            } else sendMessage(message, contact.id, TYPE_TEXT){
-                saveToMainList(contact.id, TYPE_CHAT)
+            } else sendMessageToGroup(message, group.id, TYPE_TEXT){
                 inputMessage.setText("")
             }
         }

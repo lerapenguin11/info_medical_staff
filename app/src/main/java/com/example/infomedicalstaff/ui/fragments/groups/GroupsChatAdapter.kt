@@ -1,4 +1,4 @@
-package com.example.infomedicalstaff.view.adapter
+package com.example.infomedicalstaff.ui.fragments.groups
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
@@ -20,21 +20,21 @@ import com.example.infomedicalstaff.utilits.asTime
 import java.text.SimpleDateFormat
 import java.util.*
 
-class SingleChatAdapter : RecyclerView.Adapter<SingleChatAdapter.SingleChatViewHolder>() {
+class GroupsChatAdapter : RecyclerView.Adapter<GroupsChatAdapter.GroupsChatViewHolder>() {
 
     private var mListMessageCache = emptyList<CommonModel>()
     private lateinit var mDiffResult : DiffResult
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SingleChatViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GroupsChatViewHolder {
 
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_message, parent, false)
 
-        return SingleChatViewHolder(view)
+        return GroupsChatViewHolder(view)
     }
 
     override fun getItemCount(): Int = mListMessageCache.size
 
-    override fun onBindViewHolder(holder: SingleChatViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: GroupsChatViewHolder, position: Int) {
         if(mListMessageCache[position].fromText == CURRENT_UID){
             holder.blockUserMessage.visibility = View.VISIBLE
             holder.blockReceivingMessage.visibility = View.GONE
@@ -47,8 +47,8 @@ class SingleChatAdapter : RecyclerView.Adapter<SingleChatAdapter.SingleChatViewH
             holder.blockReceivingMessage.visibility = View.VISIBLE
             holder.messageReceiving.text = mListMessageCache[position].text
             holder.messageReceivingTime.text
-            //holder.messageReceivingTime.text =
-              //  mListMessageCache[position].timeStamp.toString().asTime()
+            holder.messageReceivingTime.text =
+                mListMessageCache[position].timeStamp.toString().asTime()
         }
     }
 
@@ -66,7 +66,7 @@ class SingleChatAdapter : RecyclerView.Adapter<SingleChatAdapter.SingleChatViewH
     }
 
     @SuppressLint("NonConstantResourceId")
-    class SingleChatViewHolder(view : View) : RecyclerView.ViewHolder(view) {
+    class GroupsChatViewHolder(view : View) : RecyclerView.ViewHolder(view) {
         val blockUserMessage : ConstraintLayout = view.findViewById(R.id.block_message_user)
         val messageUser : TextView = view.findViewById(R.id.tv_message_user)
         val messageUserTime : TextView = view.findViewById(R.id.tv_message_user_time)

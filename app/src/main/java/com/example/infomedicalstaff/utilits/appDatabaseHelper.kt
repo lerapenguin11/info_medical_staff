@@ -16,6 +16,12 @@ lateinit var CURRENT_UID : String
 const val NODE_USERS = "users"
 const val NODE_MESSAGE = "message"
 const val NODE_CHAT_LIST = "chat_list"
+const val NODE_GROUPS = "groups"
+const val NODE_MEMBERS = "members"
+
+const val USER_CREATOR = "creator"
+const val USER_ADMIN = "admin"
+const val USER_MEMBER = "member"
 
 const val CHILD_ID = "id"
 const val CHILD_EMAIL = "email"
@@ -61,6 +67,25 @@ fun sendMessage(message: String, receivingUserId: String, typeText: String, func
 
     REF_DATABASE_ROOT
         .updateChildren(mapDialog)
+        .addOnSuccessListener { function() }
+}
+
+fun sendMessageToGroup(message: String, groupID: String, typeText: String, function: () -> Unit) {
+
+    var refMessages = "$NODE_GROUPS/$groupID/$NODE_MESSAGE"
+    val messageKey = REF_DATABASE_ROOT.child(refMessages).push().key
+
+    val mapMessage = hashMapOf<String, Any>()
+    mapMessage[CHILD_FROM_TEXT] =
+        CURRENT_UID
+    mapMessage[CHILD_TYPE] = typeText
+    mapMessage[CHILD_TEXT] = message
+    mapMessage[CHILD_ID] = messageKey.toString()
+    mapMessage[CHILD_TIME_STAMP] =
+        ServerValue.TIMESTAMP
+
+    REF_DATABASE_ROOT.child(refMessages).child(messageKey.toString())
+        .updateChildren(mapMessage)
         .addOnSuccessListener { function() }
 }
 

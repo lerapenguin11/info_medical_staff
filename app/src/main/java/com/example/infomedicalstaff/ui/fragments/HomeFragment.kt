@@ -10,6 +10,7 @@ import androidx.fragment.app.FragmentTransaction
 import com.example.infomedicalstaff.R
 import com.example.infomedicalstaff.databinding.FragmentHomeBinding
 import com.example.infomedicalstaff.ui.fragments.chatList.ChatsListFragment
+import com.example.infomedicalstaff.utilits.USER
 
 class HomeFragment : Fragment() {
     private var _binding : FragmentHomeBinding? = null
@@ -36,6 +37,8 @@ class HomeFragment : Fragment() {
     override fun onResume() {
         super.onResume()
         initFunc()
+
+        binding.tvName.setText(USER.userName)
     }
 
     private fun initFunc() {

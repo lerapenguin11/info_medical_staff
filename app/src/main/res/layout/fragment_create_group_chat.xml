@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.fragments.groups.CreateGroupChatFragment">
+
+    <ImageView
+        android:id="@+id/iv_toolbar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/top_background" />
+
+    <ImageView
+        android:id="@+id/bt_arrow_contacts"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:src="@drawable/left_arrow_white"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/new_group"
+        style="@style/TextToolbar"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/bt_arrow_contacts"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/iv_toolbar"
+        app:layout_constraintTop_toTopOf="@+id/bt_arrow_contacts" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/chats_background"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/iv_toolbar"
+        app:layout_constraintStart_toStartOf="@+id/iv_toolbar"
+        app:layout_constraintTop_toBottomOf="@+id/textView">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/bt_photo_create_group"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginStart="24dp"
+            android:background="@drawable/background_add_photo_user"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+
+            <ImageView
+                android:id="@+id/iv_photo_camera"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_photo_camera"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <EditText
+            android:id="@+id/et_name_group"
+            style="@style/TextHint"
+            android:layout_width="0dp"
+            android:layout_height="55dp"
+            android:background="@drawable/background_profile_et"
+            android:ems="10"
+            android:hint="Введите название группы"
+            android:layout_marginEnd="24dp"
+            android:layout_marginStart="14dp"
+            android:inputType="textPersonName"
+            app:layout_constraintBottom_toBottomOf="@+id/bt_photo_create_group"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/bt_photo_create_group"
+            app:layout_constraintTop_toTopOf="@+id/bt_photo_create_group"
+            tools:ignore="TextFields" />
+
+        <TextView
+            android:id="@+id/tv_users_group"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_bold"
+            android:text="@string/users"
+            android:textColor="@color/dark_accent_text"
+            android:textSize="20sp"
+            android:layout_marginTop="24dp"
+            app:layout_constraintStart_toStartOf="@+id/view"
+            app:layout_constraintTop_toBottomOf="@+id/view" />
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:background="#E7E6E6"
+            android:layout_marginTop="30dp"
+            app:layout_constraintEnd_toEndOf="@+id/et_name_group"
+            app:layout_constraintStart_toStartOf="@+id/bt_photo_create_group"
+            app:layout_constraintTop_toBottomOf="@+id/et_name_group" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_user_group"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/tv_users_group"
+            tools:listitem="@layout/item_users"/>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fb_create_group"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/check"
+            app:tint="@color/white"
+            android:layout_marginEnd="24dp"
+            android:layout_marginBottom="24dp"
+            app:backgroundTint="@color/toolbar_chat"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

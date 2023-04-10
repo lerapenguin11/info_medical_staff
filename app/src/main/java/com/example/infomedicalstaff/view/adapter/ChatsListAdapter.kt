@@ -10,7 +10,10 @@ import com.example.infomedicalstaff.R
 import com.example.infomedicalstaff.business.model.CommonModel
 import com.example.infomedicalstaff.ui.fragments.HomeFragment
 import com.example.infomedicalstaff.ui.fragments.chatList.ChatsListFragment
+import com.example.infomedicalstaff.ui.fragments.groups.GroupsChatFragment
 import com.example.infomedicalstaff.ui.fragments.single.SingleChatFragment
+import com.example.infomedicalstaff.utilits.TYPE_CHAT
+import com.example.infomedicalstaff.utilits.TYPE_GROUP
 import com.example.infomedicalstaff.utilits.asTime
 import com.example.infomedicalstaff.utilits.replaceFragment
 
@@ -23,6 +26,10 @@ class ChatsListAdapter : RecyclerView.Adapter<ChatsListAdapter.ChatsViewHolder>(
         val holder = ChatsViewHolder(view)
 
         holder.itemView.setOnClickListener {
+            when(listItems[holder.adapterPosition].type){
+                TYPE_CHAT -> replaceFragment(SingleChatFragment(listItems[holder.adapterPosition]))
+                TYPE_GROUP -> replaceFragment(GroupsChatFragment(listItems[holder.adapterPosition]))
+            }
             replaceFragment(SingleChatFragment(listItems[holder.adapterPosition]))
         }
 
@@ -31,7 +38,7 @@ class ChatsListAdapter : RecyclerView.Adapter<ChatsListAdapter.ChatsViewHolder>(
 
     override fun getItemCount(): Int = listItems.size
     override fun onBindViewHolder(holder: ChatsListAdapter.ChatsViewHolder, position: Int) {
-        holder.nameGroup.text = listItems[position].userName
+        holder.nameGroup.text = listItems[position].fullName
         holder.textGroup.text = listItems[position].lastMessage
         //holder.iconGroup.setBackgroundResource(R.drawable.user)
         //holder.time.text = listItems[position].timeStamp.toString().asTime()

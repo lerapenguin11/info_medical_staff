@@ -27,4 +27,6 @@
     <string name="contacts">Контакты</string>
     <string name="name_user">Имя пользователя</string>
     <string name="post">Должность</string>
+    <string name="new_group">Новая группа</string>
+    <string name="users">Участники</string>
 </resources>

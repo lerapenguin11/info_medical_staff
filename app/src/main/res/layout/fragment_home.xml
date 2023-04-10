@@ -294,7 +294,7 @@
                     style="@style/MenuDoc"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="СП"
+                    android:text="НД"
                     android:gravity="center"/>
             </LinearLayout>
 
@@ -330,7 +330,7 @@
                     style="@style/MenuDoc"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="СП"
+                    android:text="СоПы"
                     android:gravity="center"/>
             </LinearLayout>
 
@@ -370,7 +370,7 @@
                     style="@style/MenuDoc"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="СП"
+                    android:text="Презентации"
                     android:gravity="center"/>
             </LinearLayout>
 
@@ -403,7 +403,7 @@
                     style="@style/MenuDoc"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="СП"
+                    android:text="СанПиНы"
                     android:gravity="center"/>
             </LinearLayout>
 

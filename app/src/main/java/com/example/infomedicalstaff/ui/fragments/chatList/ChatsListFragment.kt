@@ -49,23 +49,72 @@ class ChatsListFragment() : BaseFragment(R.layout.fragment_single_chat) {
         mRecyclerView = binding.rvChats
         mAdapter = ChatsListAdapter()
 
-        mRefChatList.addListenerForSingleValueEvent(AppValueEventListener{
-            mListItems = it.children.map { it.getCommonModel() }
-            mListItems.forEach{model ->
-                mRefUser.child(model.id).addListenerForSingleValueEvent(AppValueEventListener{
-                    val newModel = it.getCommonModel()
-                    mRefMessages.child(model.id).limitToLast(1)
-                        .addListenerForSingleValueEvent(AppValueEventListener{
-                            val tempList = it.children.map { it.getCommonModel() }
-                            newModel.lastMessage = tempList[0].text
-                            mAdapter.updateListItem(newModel)
-                        })
-                })
+        mRefChatList.addListenerForSingleValueEvent(AppValueEventListener { dataSnapshot ->
+            mListItems = dataSnapshot.children.map { it.getCommonModel() }
+            mListItems.forEach { model ->
+
+                when(model.type){
+                    TYPE_CHAT -> showChat(model)
+                    TYPE_GROUP -> showGroup(model)
+                }
             }
         })
 
         mRecyclerView.layoutManager = LinearLayoutManager(context)
         mRecyclerView.adapter = mAdapter
+    }
+
+    private fun showGroup(model: CommonModel) {
+        REF_DATABASE_ROOT.child(NODE_GROUPS).child(model.id)
+            .addListenerForSingleValueEvent(AppValueEventListener { dataSnapshot1 ->
+                val newModel = dataSnapshot1.getCommonModel()
+
+                // 3 запрос
+                REF_DATABASE_ROOT.child(NODE_GROUPS).child(model.id).child(
+                    NODE_MESSAGE)
+                    .limitToLast(1)
+                    .addListenerForSingleValueEvent(AppValueEventListener { dataSnapshot2 ->
+                        val tempList = dataSnapshot2.children.map { it.getCommonModel() }
+
+                        if (tempList.isEmpty()){
+                            newModel.lastMessage = "Чат очищен"
+                        } else {
+                            newModel.lastMessage = tempList[0].text
+                        }
+
+                        newModel.type = TYPE_GROUP
+
+                        mAdapter.updateListItem(newModel)
+                    })
+
+            })
+    }
+
+    private fun showChat(model: CommonModel) {
+        mRefUser.child(model.id)
+            .addListenerForSingleValueEvent(AppValueEventListener { dataSnapshot1 ->
+                val newModel = dataSnapshot1.getCommonModel()
+
+                // 3 запрос
+                mRefMessages.child(model.id).limitToLast(1)
+                    .addListenerForSingleValueEvent(AppValueEventListener { dataSnapshot2 ->
+                        val tempList = dataSnapshot2.children.map { it.getCommonModel() }
+
+                        if (tempList.isEmpty()){
+                            newModel.lastMessage = "Чат очищен"
+                        } else {
+                            newModel.lastMessage = tempList[0].text
+                        }
+
+                        if (newModel.fullName.isEmpty()) {
+                            newModel.fullName = "terapy"
+                        }
+
+                        newModel.type = TYPE_CHAT
+
+                        mAdapter.updateListItem(newModel)
+                    })
+            })
     }
 
     private fun initButtonClickArrow() {
@@ -85,7 +134,7 @@ class ChatsListFragment() : BaseFragment(R.layout.fragment_single_chat) {
             transaction.commit()
         }*/
         binding.button.setOnClickListener{
-            val addContactsFragment = AddContactsFragment()
+            val addContactsFragment = ContactsFragment()
             val transaction : FragmentTransaction = requireFragmentManager().beginTransaction()
             transaction.replace(R.id.main_layout, addContactsFragment)
             transaction.commit()

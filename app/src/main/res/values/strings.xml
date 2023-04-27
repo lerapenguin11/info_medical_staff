@@ -29,4 +29,6 @@
     <string name="post">Должность</string>
     <string name="new_group">Новая группа</string>
     <string name="users">Участники</string>
+    <string name="open">Открыть</string>
+    <string name="add_fav">В избранное</string>
 </resources>

@@ -111,5 +111,24 @@
         <item name="fontFamily">@font/roboto</item>
         <item name="android:textColor">#acadbd</item>
     </style>
+    
+    <style name="TextItemDoc" parent="TextAppearance.AppCompat">
+        <item name="android:textSize">16sp</item>
+        <item name="fontFamily">@font/roboto</item>
+        <item name="android:textColor">#2E3D6D</item>
+        <item name="android:paddingStart">10dp</item>
+    </style>
+
+    <style name="TextDialogBottom" parent="TextAppearance.AppCompat">
+        <item name="android:textSize">18sp</item>
+        <item name="fontFamily">@font/roboto_bold</item>
+        <item name="android:textColor">#FFFFFF</item>
+    </style>
+
+    <style name="TextDialogDoc" parent="TextAppearance.AppCompat">
+        <item name="android:textSize">18sp</item>
+        <item name="fontFamily">@font/roboto</item>
+        <item name="android:textColor">#2E3D6D</item>
+    </style>
 
 </resources>

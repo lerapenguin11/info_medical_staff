@@ -18,6 +18,7 @@ const val NODE_MESSAGE = "message"
 const val NODE_CHAT_LIST = "chat_list"
 const val NODE_GROUPS = "groups"
 const val NODE_MEMBERS = "members"
+const val NODE_PHONES = "phones"
 
 const val USER_CREATOR = "creator"
 const val USER_ADMIN = "admin"

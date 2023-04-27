@@ -24,6 +24,8 @@ class HomeFragment : Fragment() {
 
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
 
+        binding.tvName.setText(USER.userName)
+
         binding.linearChats.setOnClickListener {
             val chatsListFragment = ChatsListFragment()
             val transaction : FragmentTransaction = requireFragmentManager().beginTransaction()
@@ -36,9 +38,9 @@ class HomeFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        initFunc()
 
-        binding.tvName.setText(USER.userName)
+
+        initFunc()
     }
 
     private fun initFunc() {

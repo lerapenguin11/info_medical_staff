@@ -17,4 +17,5 @@
     <color name="toolbar_chat">#9ba3ff</color>
     <color name="background_message_user">#9b89ff</color>
     <color name="background_message_receiving">#ffe4f7</color>
+    <color name="item_color">#DFE2FD</color>
 </resources>

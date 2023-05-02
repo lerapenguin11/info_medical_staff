@@ -65,8 +65,6 @@ class ChatsListFragment() : BaseFragment(R.layout.fragment_single_chat) {
     }
 
     private fun showGroup(model: CommonModel) {
-
-
         REF_DATABASE_ROOT.child(NODE_GROUPS).child(model.id)
             .addListenerForSingleValueEvent(AppValueEventListener { dataSnapshot1 ->
                 val newModel = dataSnapshot1.getCommonModel()

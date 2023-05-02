@@ -214,6 +214,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <LinearLayout
+        android:id="@+id/categories"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginStart="30dp"
@@ -231,6 +232,7 @@
             android:orientation="horizontal">
 
             <LinearLayout
+                android:id="@+id/item_sanitary_roles"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
@@ -330,7 +332,7 @@
                     style="@style/MenuDoc"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="СоПы"
+                    android:text="СОПы"
                     android:gravity="center"/>
             </LinearLayout>
 
@@ -403,7 +405,7 @@
                     style="@style/MenuDoc"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="СанПиНы"
+                    android:text="МР"
                     android:gravity="center"/>
             </LinearLayout>
 
@@ -427,7 +429,7 @@
                         android:layout_width="40dp"
                         android:layout_height="40dp"
                         android:layout_margin="16dp"
-                        android:src="@drawable/dot_5g4dt5m1k6cr__1_"
+                        android:src="@drawable/guideline"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -439,7 +441,7 @@
                     style="@style/MenuDoc"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Все"
+                    android:text="ФВП"
                     android:gravity="center"/>
             </LinearLayout>
 

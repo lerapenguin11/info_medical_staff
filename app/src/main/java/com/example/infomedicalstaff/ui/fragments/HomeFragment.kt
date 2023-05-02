@@ -11,6 +11,7 @@ import com.example.infomedicalstaff.R
 import com.example.infomedicalstaff.databinding.FragmentHomeBinding
 import com.example.infomedicalstaff.ui.fragments.chatList.ChatsListFragment
 import com.example.infomedicalstaff.utilits.USER
+import com.example.infomedicalstaff.utilits.replaceFragment
 
 class HomeFragment : Fragment() {
     private var _binding : FragmentHomeBinding? = null
@@ -38,13 +39,18 @@ class HomeFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-
-
         initFunc()
     }
 
     private fun initFunc() {
         createProfileFragment()
+        clickCategories()
+    }
+
+    private fun clickCategories() {
+        binding.itemSanitaryRoles.setOnClickListener{
+            replaceFragment(SanitaryRulesFragment())
+        }
     }
 
     private fun createProfileFragment() {

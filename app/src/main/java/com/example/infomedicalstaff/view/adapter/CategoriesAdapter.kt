@@ -9,8 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.infomedicalstaff.R
 import com.example.infomedicalstaff.business.model.DocModel
 
-class CategoriesAdapter : RecyclerView.Adapter<CategoriesAdapter.CategoriesViewHolder>(){
-    val listItems = mutableListOf<DocModel>()
+class CategoriesAdapter(private val docList: ArrayList<DocModel>) : RecyclerView.Adapter<CategoriesAdapter.CategoriesViewHolder>(){
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CategoriesViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_doc, parent, false)
@@ -18,12 +17,12 @@ class CategoriesAdapter : RecyclerView.Adapter<CategoriesAdapter.CategoriesViewH
         return CategoriesViewHolder(view)
     }
 
-    override fun getItemCount(): Int = 10
+    override fun getItemCount(): Int = docList.size
 
     override fun onBindViewHolder(holder: CategoriesViewHolder, position: Int) {
-        holder.title.text = "Профилактика внутрибольничных гнойноных пациентов"
+        val doc : DocModel = docList[position]
+        holder.title.text = doc.title
         holder.icon.setImageResource(R.drawable.guideline)
-
     }
 
     class CategoriesViewHolder(view : View) : RecyclerView.ViewHolder(view) {

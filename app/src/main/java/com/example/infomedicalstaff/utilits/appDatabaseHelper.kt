@@ -7,8 +7,10 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ServerValue
+import com.google.firebase.firestore.FirebaseFirestore
 
 lateinit var AUTH : FirebaseAuth
+lateinit var FIRE_STORE_DATABASE : FirebaseFirestore
 lateinit var REF_DATABASE_ROOT : DatabaseReference
 lateinit var USER : UserModel
 lateinit var CURRENT_UID : String
@@ -43,6 +45,7 @@ fun initFirebase(){
     REF_DATABASE_ROOT = FirebaseDatabase.getInstance().reference
     USER = UserModel()
     CURRENT_UID = AUTH.currentUser?.uid.toString()
+    FIRE_STORE_DATABASE = FirebaseFirestore.getInstance()
 }
 
 fun DataSnapshot.getCommonModel() : CommonModel =

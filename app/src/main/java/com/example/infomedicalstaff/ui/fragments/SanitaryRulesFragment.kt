@@ -36,7 +36,7 @@ class SanitaryRulesFragment : Fragment() {
         binding.rvSanRules.apply {
             binding.rvSanRules.layoutManager = LinearLayoutManager(context)
             sanitaryRulesList = arrayListOf()
-            sanRulesAdapter = CategoriesAdapter(sanitaryRulesList)
+            sanRulesAdapter = CategoriesAdapter(sanitaryRulesList, context)
             binding.rvSanRules.adapter = sanRulesAdapter
         }
 
@@ -73,7 +73,7 @@ class SanitaryRulesFragment : Fragment() {
 
     private fun initRecyclerView() {
         binding.rvSanRules.apply {
-            adapter = CategoriesAdapter(sanitaryRulesList)
+            adapter = CategoriesAdapter(sanitaryRulesList, context)
 
             binding.rvSanRules.adapter
 

@@ -58,5 +58,14 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:listitem="@layout/item_doc">
         </androidx.recyclerview.widget.RecyclerView>
+
+        <!--<com.github.barteksc.pdfviewer.PDFView
+            android:id="@+id/web"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:layout_editor_absoluteY="0dp"/>-->
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

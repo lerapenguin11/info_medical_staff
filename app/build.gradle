@@ -18,6 +18,10 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        kapt {
+            arguments {arg("room.schemaLocation", "$projectDir/schemas")}
+        }
     }
 
     buildTypes {
@@ -69,4 +73,9 @@ dependencies {
 
     //PdfViewer
     implementation 'com.github.barteksc:android-pdf-viewer:2.8.2'
+
+    //Room
+    implementation 'androidx.room:room-runtime:2.5.1' // Библиотека "Room"
+    kapt "androidx.room:room-compiler:2.5.1" // Кодогенератор
+    implementation 'androidx.room:room-ktx:2.5.1' // Дополнительно для Kotlin Coroutines, Kotlin Flows
 }

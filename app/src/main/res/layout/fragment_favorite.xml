@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.fragments.SanitaryRulesFragment">
+    tools:context=".ui.fragments.FavoriteFragment">
 
     <ImageView
         android:id="@+id/iv_toolbar"
@@ -17,7 +17,7 @@
         app:srcCompat="@drawable/top_background" />
 
     <ImageView
-        android:id="@+id/bt_arrow_san_rules"
+        android:id="@+id/bt_arrow_fav"
         android:layout_width="24dp"
         android:layout_height="24dp"
         android:src="@drawable/left_arrow_white"
@@ -30,15 +30,18 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/sanitary_rules"
+        android:text="@string/favorite"
         style="@style/TextToolbar"
         android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="@+id/bt_arrow_san_rules"
+        app:layout_constraintBottom_toBottomOf="@+id/bt_arrow_fav"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/iv_toolbar"
-        app:layout_constraintTop_toTopOf="@+id/bt_arrow_san_rules" />
+        app:layout_constraintTop_toTopOf="@+id/bt_arrow_fav" />
+
+
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout6"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="24dp"
@@ -48,8 +51,21 @@
         app:layout_constraintStart_toStartOf="@+id/iv_toolbar"
         app:layout_constraintTop_toBottomOf="@+id/textView">
 
+        <TextView
+            android:id="@+id/text_fav"
+            style="@style/TextHint"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/text_fav"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/rv_fav"
+            app:layout_constraintStart_toStartOf="@+id/rv_fav"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.4" />
+
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_san_rules"
+            android:id="@+id/rv_fav"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="parent"
@@ -57,5 +73,8 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:listitem="@layout/item_doc">
         </androidx.recyclerview.widget.RecyclerView>
+
+
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

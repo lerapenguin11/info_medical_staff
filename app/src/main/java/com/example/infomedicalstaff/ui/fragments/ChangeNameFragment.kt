@@ -23,11 +23,14 @@ class ChangeNameFragment : Fragment() {
 
         _binding = FragmentChangeNameBinding.inflate(inflater, container, false)
 
-        binding.btChengeSave.setOnClickListener{changeName()}
+        binding.btChengeSave.setOnClickListener{
+            changeName()
+            replaceFragment(ProfileFragment())
+        }
 
         val fullNameList = USER.userName.split(" ")
         binding.etChengeUserName.setText(fullNameList[0])
-//        binding.etChengeUserSurname.setText(fullNameList[1])
+        //binding.etChengeUserSurname.setText(fullNameList[1])
 
         return binding.root
     }
@@ -35,9 +38,14 @@ class ChangeNameFragment : Fragment() {
         super.onResume()
         initFirebase()
         //
-        changeName()
+        //changeName()
+        clickArrowProfile()
+    }
 
-
+    private fun clickArrowProfile() {
+        binding.ivArrowProfile.setOnClickListener {
+            replaceFragment(ProfileFragment())
+        }
     }
 
     private fun changeName(){

@@ -44,10 +44,7 @@ class RegistrationFragment : Fragment() {
                             REF_DATABASE_ROOT.child(NODE_USERS).child(uid).updateChildren(dateMap)
                                 .addOnCompleteListener {it2 ->
                                     if(it2.isSuccessful){
-                                        val loginFragment = LoginFragment()
-                                        val transaction : FragmentTransaction = requireFragmentManager().beginTransaction()
-                                        transaction.replace(R.id.main_layout, loginFragment)
-                                        transaction.commit()
+                                        replaceFragment(LoginFragment())
                                     } else Toast.makeText(context, "Произошла проблема", Toast.LENGTH_LONG).show()
                                 }
                         }

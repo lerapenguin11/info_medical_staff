@@ -35,6 +35,8 @@ class CategoriesAdapter(private val docList: ArrayList<DocModel>,
 
         holder.item.setOnClickListener {
             listener.onPdfSelected(doc)
+
+
         }
     }
 

@@ -6,12 +6,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.FragmentTransaction
-import com.example.infomedicalstaff.R
 import com.example.infomedicalstaff.databinding.FragmentHomeBinding
 import com.example.infomedicalstaff.ui.fragments.chatList.ChatsListFragment
-import com.example.infomedicalstaff.utilits.USER
-import com.example.infomedicalstaff.utilits.replaceFragment
+import com.example.infomedicalstaff.utilits.*
 
 class HomeFragment : Fragment() {
     private var _binding : FragmentHomeBinding? = null
@@ -25,13 +22,10 @@ class HomeFragment : Fragment() {
 
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
 
-        binding.tvName.setText(USER.userName)
+
 
         binding.linearChats.setOnClickListener {
-            val chatsListFragment = ChatsListFragment()
-            val transaction : FragmentTransaction = requireFragmentManager().beginTransaction()
-            transaction.replace(R.id.main_layout, chatsListFragment)
-            transaction.commit()
+           replaceFragment(ChatsListFragment())
         }
 
         return binding.root
@@ -39,12 +33,21 @@ class HomeFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
+        val userName = ""
+        binding.tvName.text = USER.userName
         initFunc()
     }
 
     private fun initFunc() {
         createProfileFragment()
         clickCategories()
+        clickNavigation()
+    }
+
+    private fun clickNavigation() {
+        binding.navFav.setOnClickListener {
+            replaceFragment(FavoriteFragment())
+        }
     }
 
     private fun clickCategories() {
@@ -55,10 +58,7 @@ class HomeFragment : Fragment() {
 
     private fun createProfileFragment() {
         binding.ivHomeUserPhoto.setOnClickListener {
-            val profileFragment = ProfileFragment()
-            val transaction : FragmentTransaction = requireFragmentManager().beginTransaction()
-            transaction.replace(R.id.main_layout, profileFragment)
-            transaction.commit()
+            replaceFragment(ProfileFragment())
         }
     }
 }

@@ -13,8 +13,8 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.FragmentTransaction
 import com.example.infomedicalstaff.R
 import com.example.infomedicalstaff.databinding.FragmentLoginBinding
-import com.example.infomedicalstaff.utilits.AUTH
-import com.example.infomedicalstaff.utilits.initFirebase
+import com.example.infomedicalstaff.ui.fragments.pdf.PDFFragment
+import com.example.infomedicalstaff.utilits.*
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
@@ -75,10 +75,7 @@ class LoginFragment : Fragment() {
             if(email.isNotEmpty() && password.isNotEmpty()){
                 AUTH.signInWithEmailAndPassword(email, password).addOnCompleteListener{
                     if(it.isSuccessful){
-                        val homeFragment = HomeFragment()
-                        val transaction : FragmentTransaction = fragmentManager!!.beginTransaction()
-                        transaction.replace(R.id.main_layout, homeFragment)
-                        transaction.commit()
+                        replaceFragment(HomeFragment())
                     }
                 }
             }
@@ -92,7 +89,6 @@ class LoginFragment : Fragment() {
         launcher.launch(singInClient.signInIntent)
     }
 
-    //вынести в moxy
     private fun getClient() : GoogleSignInClient{
         val gso = GoogleSignInOptions
             .Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)

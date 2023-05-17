@@ -32,4 +32,6 @@
     <string name="open">Открыть</string>
     <string name="add_fav">В избранное</string>
     <string name="sanitary_rules">Санитарные правила</string>
+    <string name="favorite">Избранное</string>
+    <string name="text_fav">В вашем списке нет еще избранных документов!</string>
 </resources>

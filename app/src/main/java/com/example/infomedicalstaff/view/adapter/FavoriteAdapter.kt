@@ -10,7 +10,6 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.infomedicalstaff.R
-import com.example.infomedicalstaff.business.model.CommonModel
 import com.example.infomedicalstaff.business.model.DocModel
 import com.example.infomedicalstaff.ui.fragments.pdf.OnPdfSelectListener
 
@@ -29,7 +28,8 @@ class FavoriteConfig(){
     }
 
     class FavoriteAdapter(private val favDocList: ArrayList<DocModel>,
-                          private val listener: OnPdfSelectListener, private val keys : ArrayList<String>
+                          private val listener: OnPdfSelectListener, private val keys : ArrayList<String>,
+                          private val favoriteListCopy: ArrayList<DocModel> = favDocList
     ) : RecyclerView.Adapter<FavoritesViewHolder>(){
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FavoritesViewHolder {
@@ -42,20 +42,35 @@ class FavoriteConfig(){
         override fun getItemCount(): Int = favDocList.size
 
         override fun onBindViewHolder(holder: FavoritesViewHolder, position: Int) {
-            holder.bind(favDocList.get(position), keys.get(position))
+
+            holder.bind(favDocList[position], keys[position])
             val doc: DocModel = favDocList[position]
+
             holder.item.setOnClickListener {
                 listener.onPdfSelected(doc)
             }
+            //updateListItem(favDocList)
             /*holder.title.text = doc.title
             holder.icon.setImageResource(R.drawable.guideline)
             holder.url.text = doc.file*/
         }
 
-        fun updateListItem(item : DocModel){
-            favDocList.add(item)
-            notifyItemInserted(favDocList.size)
-        }
+        //TODO исплавить баг с избранным
+       /* fun updateListItem(item: DocModel){
+            val tempArrayList: ArrayList<DocModel> = ArrayList()
+            if(!favDocList.isEmpty()){
+                tempArrayList.add(item)
+                favDocList.add(item)
+                notifyItemInserted(favDocList.size)
+            } else {
+                tempArrayList.addAll(favoriteListCopy)
+            }
+            favDocList.clear();
+            favDocList.addAll(tempArrayList);
+            notifyDataSetChanged();
+            tempArrayList.clear();
+
+        }*/
 
 
     }

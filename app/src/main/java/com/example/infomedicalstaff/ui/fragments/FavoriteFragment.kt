@@ -31,6 +31,7 @@ class FavoriteFragment : Fragment(), OnPdfSelectListener {
                 FavoriteConfig().setConfig(binding.rvFav, favorite, keys, this@FavoriteFragment,
                     activity!!
                 )
+
             }
 
             override fun updateFavoriteList(favorite: ArrayList<DocModel>) {

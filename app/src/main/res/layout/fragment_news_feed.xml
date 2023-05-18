@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.fragments.SanitaryRulesFragment">
+    tools:context=".ui.fragments.NewsFeedFragment">
 
     <ImageView
         android:id="@+id/iv_toolbar"
@@ -30,7 +30,7 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/sanitary_rules"
+        android:text="@string/news_feed"
         style="@style/TextToolbar"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="@+id/bt_arrow_san_rules"
@@ -49,7 +49,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_san_rules"
+            android:id="@+id/rv_news_feed"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
@@ -58,7 +58,9 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:listitem="@layout/item_doc">
+            tools:listitem="@layout/item_news_feed">
         </androidx.recyclerview.widget.RecyclerView>
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

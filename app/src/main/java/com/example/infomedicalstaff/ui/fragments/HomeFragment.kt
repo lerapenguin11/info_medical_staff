@@ -48,6 +48,8 @@ class HomeFragment : Fragment() {
         binding.navFav.setOnClickListener {
             replaceFragment(FavoriteFragment())
         }
+
+        binding.navNewsFeed.setOnClickListener { replaceFragment(NewsFeedFragment()) }
     }
 
     private fun clickCategories() {

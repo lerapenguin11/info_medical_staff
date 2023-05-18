@@ -16,7 +16,6 @@ class RetrievePdfFromURL(pdfView: PDFView) :
     val mypdfView: PDFView = pdfView
 
     override fun doInBackground(vararg params: String?): InputStream? {
-        // on below line we are creating a variable for our input stream.
         var inputStream: InputStream? = null
         try {
             val url = URL(params.get(0))

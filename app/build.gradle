@@ -78,4 +78,7 @@ dependencies {
     implementation 'androidx.room:room-runtime:2.5.1' // Библиотека "Room"
     kapt "androidx.room:room-compiler:2.5.1" // Кодогенератор
     implementation 'androidx.room:room-ktx:2.5.1' // Дополнительно для Kotlin Coroutines, Kotlin Flows
+
+    //Glide
+    implementation 'com.github.bumptech.glide:glide:4.12.0'
 }

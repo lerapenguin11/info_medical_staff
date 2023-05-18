@@ -73,13 +73,11 @@ class SanitaryRulesFragment : Fragment(), OnPdfSelectListener {
                     if (error != null) {
                         Log.d("Firestore Error", error.message.toString())
                     }
-
                     for (dc: DocumentChange in value?.documentChanges!!) {
                         if (dc.type == DocumentChange.Type.ADDED) {
                             sanitaryRulesList.add(dc.document.toObject(DocModel::class.java))
                         }
                     }
-
                     sanRulesAdapter.notifyDataSetChanged()
                 }
 

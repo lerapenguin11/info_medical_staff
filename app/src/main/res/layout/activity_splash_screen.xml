@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="#9ba3ff"
+    tools:context=".SplashScreenActivity">
+    
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/anim"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        app:lottie_autoPlay="true"
+        android:background="#9ba3ff"
+        app:lottie_cacheComposition="true"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/medicine"
+        app:lottie_speed="1"/>
+
+</LinearLayout>

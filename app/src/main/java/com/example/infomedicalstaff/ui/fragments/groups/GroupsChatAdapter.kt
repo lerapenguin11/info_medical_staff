@@ -38,7 +38,7 @@ class GroupsChatAdapter : RecyclerView.Adapter<GroupsChatAdapter.GroupsChatViewH
         if(mListMessageCache[position].fromText == CURRENT_UID){
             holder.blockUserMessage.visibility = View.VISIBLE
             holder.blockReceivingMessage.visibility = View.GONE
-            holder.messageUser.text = mListMessageCache[position].text
+            holder.messageUser.setText("hi!")
             holder.messageUserTime.text
             holder.messageUserTime.text =
                 mListMessageCache[position].timeStamp.toString().asTime()
@@ -70,6 +70,7 @@ class GroupsChatAdapter : RecyclerView.Adapter<GroupsChatAdapter.GroupsChatViewH
         val blockUserMessage : ConstraintLayout = view.findViewById(R.id.block_message_user)
         val messageUser : TextView = view.findViewById(R.id.tv_message_user)
         val messageUserTime : TextView = view.findViewById(R.id.tv_message_user_time)
+
 
         val blockReceivingMessage : ConstraintLayout = view.findViewById(R.id.block_message_receiving)
         val messageReceiving : TextView = view.findViewById(R.id.tv_message_receiving)

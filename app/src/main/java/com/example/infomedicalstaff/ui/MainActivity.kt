@@ -2,6 +2,7 @@ package com.example.infomedicalstaff.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.infomedicalstaff.NewAuthenticationFragment
 import com.example.infomedicalstaff.R
 import com.example.infomedicalstaff.business.model.UserModel
 import com.example.infomedicalstaff.databinding.ActivityMainBinding

@@ -61,7 +61,7 @@
             android:layout_height="wrap_content"
             android:maxWidth="250dp"
             android:padding="10dp"
-            tools:text="Добрый день!"
+            android:text="hi!"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

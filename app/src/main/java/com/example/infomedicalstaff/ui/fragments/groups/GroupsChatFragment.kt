@@ -71,10 +71,10 @@ class GroupsChatFragment(private val group: CommonModel) : Fragment(){
     private fun initRecyclerView() {
         mRecyclerView = binding.rvSingleChat
         mAdapter = GroupsChatAdapter()
-        mRefMessage = REF_DATABASE_ROOT
+        /*mRefMessage = REF_DATABASE_ROOT
             .child(NODE_GROUPS)
             .child(group.id)
-            .child(NODE_MESSAGE)
+            .child(NODE_MESSAGE)*/
         mRecyclerView.layoutManager = LinearLayoutManager(context)
         mRecyclerView.adapter = mAdapter
 
@@ -86,7 +86,7 @@ class GroupsChatFragment(private val group: CommonModel) : Fragment(){
 
         }
 
-        mRefMessage.limitToLast(mCountMessage).addChildEventListener(mMessageListener)
+//        mRefMessage.limitToLast(mCountMessage).addChildEventListener(mMessageListener)
 
         mRecyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
@@ -142,6 +142,6 @@ class GroupsChatFragment(private val group: CommonModel) : Fragment(){
     override fun onPause() {
         super.onPause()
         buttonClickArrow()
-        mRefMessage.removeEventListener(mMessageListener)
+//        mRefMessage.removeEventListener(mMessageListener)
     }
 }

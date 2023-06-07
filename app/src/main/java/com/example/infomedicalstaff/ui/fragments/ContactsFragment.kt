@@ -56,7 +56,7 @@ class ContactsFragment : Fragment() {
 
     private fun initRecyclerView() {
         mRecyclerView = binding.rvContacts
-        mRefContacts = REF_DATABASE_ROOT.child(NODE_USERS)
+        mRefContacts = REF_DATABASE_ROOT.child(NODE_PHONES)
 
         val options = FirebaseRecyclerOptions.Builder<CommonModel>()
             .setQuery(mRefContacts, CommonModel::class.java)
@@ -95,6 +95,7 @@ class ContactsFragment : Fragment() {
 
 
             }
+
 
         }
         mRecyclerView.setLayoutManager(LinearLayoutManager(context))

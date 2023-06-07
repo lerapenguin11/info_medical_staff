@@ -6,6 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.infomedicalstaff.databinding.FragmentPdfBinding
+import com.example.infomedicalstaff.ui.fragments.SanitaryRulesFragment
+import com.example.infomedicalstaff.utilits.replaceFragment
 
 class PDFFragment : Fragment() {
     private var _binding : FragmentPdfBinding? = null
@@ -25,6 +27,7 @@ class PDFFragment : Fragment() {
         RetrievePdfFromURL(binding.pdfView).execute(displayFile)
 
 
+        binding.btArrowChatList.setOnClickListener { replaceFragment(SanitaryRulesFragment()) }
         return binding.root
     }
 }

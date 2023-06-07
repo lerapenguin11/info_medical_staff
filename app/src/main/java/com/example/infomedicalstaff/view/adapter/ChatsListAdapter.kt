@@ -8,6 +8,7 @@ import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.RecyclerView
 import com.example.infomedicalstaff.R
 import com.example.infomedicalstaff.business.model.CommonModel
+import com.example.infomedicalstaff.business.model.DocModel
 import com.example.infomedicalstaff.ui.fragments.HomeFragment
 import com.example.infomedicalstaff.ui.fragments.chatList.ChatsListFragment
 import com.example.infomedicalstaff.ui.fragments.groups.GroupsChatFragment
@@ -17,7 +18,7 @@ import com.example.infomedicalstaff.utilits.TYPE_GROUP
 import com.example.infomedicalstaff.utilits.asTime
 import com.example.infomedicalstaff.utilits.replaceFragment
 
-class ChatsListAdapter : RecyclerView.Adapter<ChatsListAdapter.ChatsViewHolder>() {
+class ChatsListAdapter() : RecyclerView.Adapter<ChatsListAdapter.ChatsViewHolder>() {
 
     val listItems = mutableListOf<CommonModel>()
 
@@ -38,8 +39,10 @@ class ChatsListAdapter : RecyclerView.Adapter<ChatsListAdapter.ChatsViewHolder>(
 
     override fun getItemCount(): Int = listItems.size
     override fun onBindViewHolder(holder: ChatsListAdapter.ChatsViewHolder, position: Int) {
-        holder.nameGroup.text = listItems[position].fullName
-        holder.textGroup.text = listItems[position].lastMessage
+        val chat: CommonModel = listItems[position]
+
+        holder.nameGroup.text = chat.fullName
+        holder.textGroup.text = chat.lastMessage
         //holder.iconGroup.setBackgroundResource(R.drawable.user)
         //holder.time.text = listItems[position].timeStamp.toString().asTime()
     }

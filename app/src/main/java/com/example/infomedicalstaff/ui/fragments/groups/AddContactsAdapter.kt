@@ -5,19 +5,15 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.RecyclerView
 import com.example.infomedicalstaff.R
 import com.example.infomedicalstaff.business.model.CommonModel
-import com.example.infomedicalstaff.ui.fragments.HomeFragment
-import com.example.infomedicalstaff.ui.fragments.chatList.ChatsListFragment
-import com.example.infomedicalstaff.ui.fragments.single.SingleChatFragment
-import com.example.infomedicalstaff.utilits.asTime
 import com.example.infomedicalstaff.utilits.replaceFragment
 
-class AddContactsAdapter : RecyclerView.Adapter<AddContactsAdapter.AddContactsViewHolder>() {
+class AddContactsAdapter(val listItems : List<CommonModel>) : RecyclerView.Adapter<AddContactsAdapter.AddContactsViewHolder>() {
 
-    val listItems = mutableListOf<CommonModel>()
+    /*val listItems = mutableListOf<CommonModel>()*/
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AddContactsViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_add_user, parent, false)
@@ -50,10 +46,10 @@ class AddContactsAdapter : RecyclerView.Adapter<AddContactsAdapter.AddContactsVi
 
     }
 
-    fun updateListItem(item : CommonModel){
+    /*fun updateListItem(item: CommonModel){
         listItems.add(item)
         notifyItemInserted(listItems.size)
-    }
+    }*/
 
     class AddContactsViewHolder(view : View) : RecyclerView.ViewHolder(view){
         val addNameGroup : TextView = view.findViewById(R.id.tv_add_name_user)

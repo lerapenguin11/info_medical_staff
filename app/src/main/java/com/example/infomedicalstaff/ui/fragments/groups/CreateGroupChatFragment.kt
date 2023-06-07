@@ -10,10 +10,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.infomedicalstaff.business.model.CommonModel
 import com.example.infomedicalstaff.databinding.FragmentCreateGroupChatBinding
+import com.example.infomedicalstaff.ui.fragments.HomeFragment
 import com.example.infomedicalstaff.ui.fragments.chatList.ChatsListFragment
 import com.example.infomedicalstaff.utilits.createGroupDatabase
 import com.example.infomedicalstaff.utilits.replaceFragment
-import com.firebase.ui.database.FirebaseRecyclerAdapter
 
 class CreateGroupChatFragment(private var listContacts : List<CommonModel>): Fragment() {
     private var _binding: FragmentCreateGroupChatBinding? = null
@@ -50,15 +50,17 @@ class CreateGroupChatFragment(private var listContacts : List<CommonModel>): Fra
             }
         }
         binding.etNameGroup.requestFocus()
+
+        binding.btArrowContacts.setOnClickListener { replaceFragment(HomeFragment()) }
     }
 
 
     private fun initRecyclerView() {
         mRecyclerView = binding.rvUserGroup
-        mAdapter = AddContactsAdapter()
+        mAdapter = AddContactsAdapter(listContacts)
         mRecyclerView.layoutManager = LinearLayoutManager(context)
         mRecyclerView.adapter = mAdapter
 
-        listContacts.forEach {mAdapter.updateListItem(it)}
+        //listContacts.forEach {mAdapter.updateListItem(it)}
     }
 }

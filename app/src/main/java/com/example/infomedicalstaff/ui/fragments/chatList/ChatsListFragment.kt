@@ -51,17 +51,23 @@ class ChatsListFragment() : BaseFragment(R.layout.fragment_single_chat) {
 
         mRefChatList.addListenerForSingleValueEvent(AppValueEventListener { dataSnapshot ->
             mListItems = dataSnapshot.children.map { it.getCommonModel() }
-            mListItems.forEach { model ->
 
-                when(model.type){
-                    TYPE_CHAT -> showChat(model)
-                    TYPE_GROUP -> showGroup(model)
+            mRefChatList.addListenerForSingleValueEvent(AppValueEventListener { dataSnapshot ->
+                mListItems = dataSnapshot.children.map { it.getCommonModel() }
+                mListItems.forEach { model ->
+
+                    when(model.type){
+                        TYPE_CHAT -> showChat(model)
+                        TYPE_GROUP -> showGroup(model)
+                    }
                 }
-            }
+
+            })
+            mRecyclerView.layoutManager = LinearLayoutManager(context)
+            mRecyclerView.adapter = mAdapter
         })
 
-        mRecyclerView.layoutManager = LinearLayoutManager(context)
-        mRecyclerView.adapter = mAdapter
+
     }
 
     private fun showGroup(model: CommonModel) {
@@ -83,7 +89,7 @@ class ChatsListFragment() : BaseFragment(R.layout.fragment_single_chat) {
                         }
 
                         newModel.type = TYPE_GROUP
-
+                        //mAdapter = ChatsListAdapter()
                         mAdapter.updateListItem(newModel)
                     })
 
@@ -112,7 +118,7 @@ class ChatsListFragment() : BaseFragment(R.layout.fragment_single_chat) {
 
                         newModel.type = TYPE_CHAT
 
-                        mAdapter.updateListItem(newModel)
+                        //mAdapter.updateListItem(newModel)
                     })
             })
     }

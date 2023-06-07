@@ -1,13 +1,14 @@
 package com.example.infomedicalstaff
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import com.example.infomedicalstaff.databinding.FragmentNewAuthenticationBinding
-import com.example.infomedicalstaff.databinding.FragmentNewsFeedBinding
+import com.example.infomedicalstaff.ui.MainActivity
 import com.example.infomedicalstaff.utilits.AUTH
 import com.example.infomedicalstaff.utilits.replaceFragment
 import com.google.firebase.FirebaseException
@@ -18,7 +19,8 @@ import java.util.concurrent.TimeUnit
 class NewAuthenticationFragment : Fragment() {
     private var _binding: FragmentNewAuthenticationBinding? = null
     private val binding get() = _binding!!
-    private lateinit var mPhoneNamber : String
+    private lateinit var mPhoneNumber : String
+    private lateinit var resendingToken: PhoneAuthProvider.ForceResendingToken
     private lateinit var callback : PhoneAuthProvider.OnVerificationStateChangedCallbacks
 
     override fun onCreateView(
@@ -27,55 +29,56 @@ class NewAuthenticationFragment : Fragment() {
     ): View? {
 
         _binding = FragmentNewAuthenticationBinding.inflate(inflater, container, false)
+
+
+
         // Inflate the layout for this fragment
         return binding.root
     }
 
-    override fun onResume() {
-        super.onResume()
+    override fun onStart() {
+        super.onStart()
         callback = object : PhoneAuthProvider.OnVerificationStateChangedCallbacks(){
-            override fun onVerificationCompleted(p0: PhoneAuthCredential) {
-                AUTH.signInWithCredential(p0).addOnCompleteListener { task ->
-                    if (task.isSuccessful) {
+            override fun onVerificationCompleted(credential: PhoneAuthCredential) {
+                AUTH.signInWithCredential(credential).addOnCompleteListener {task ->
+                    if(task.isSuccessful){
                         Toast.makeText(activity, "Добро пожаловать", Toast.LENGTH_LONG).show()
+                    } else {
+                        Toast.makeText(activity, task.exception?.message.toString(), Toast.LENGTH_LONG).show()
+                        Log.d("TAG", task.exception?.message.toString())
                     }
                 }
             }
 
             override fun onVerificationFailed(p0: FirebaseException) {
-                Toast.makeText(activity, p0.message, Toast.LENGTH_LONG).show()
+                Toast.makeText(activity, p0.message.toString(), Toast.LENGTH_LONG).show()
             }
 
             override fun onCodeSent(id: String, token: PhoneAuthProvider.ForceResendingToken) {
-                replaceFragment(EnterCodeFragment(mPhoneNamber, id))
+                replaceFragment(EnterCodeFragment(mPhoneNumber, id))
             }
         }
-        clickButton()
-        authUser()
-        sendCode()
+        binding.newBtSingnup.setOnClickListener { sendCose() }
     }
 
-    private fun sendCode() {
-        if(binding.newEtRegEmail.text.toString().isEmpty()){
+    private fun sendCose() {
+        if(binding.phoneNumber.text.toString().isEmpty()){
             Toast.makeText(activity, "Введите номер", Toast.LENGTH_LONG).show()
-        } else {
+        } else{
             authUser()
         }
     }
 
     private fun authUser() {
-        mPhoneNamber = binding.newEtRegEmail.text.toString()
+        mPhoneNumber = binding.phoneNumber.text.toString()
         PhoneAuthProvider.getInstance().verifyPhoneNumber(
-            mPhoneNamber,
+            mPhoneNumber,
             60,
             TimeUnit.SECONDS,
-            activity as RegisterActivity,
+            activity as MainActivity,
             callback
         )
     }
 
-    private fun clickButton() {
-        binding.newBtSingnup.setOnClickListener { sendCode() }
 
-    }
 }

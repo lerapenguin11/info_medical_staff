@@ -84,4 +84,10 @@ dependencies {
 
     //lottie
     implementation 'com.airbnb.android:lottie:4.2.2'
+
+    // Import the BoM for the Firebase platform
+    implementation platform('com.google.firebase:firebase-bom:32.1.0')
+
+    //PiView
+    implementation 'io.github.chaosleung:pinview:1.4.4'
 }

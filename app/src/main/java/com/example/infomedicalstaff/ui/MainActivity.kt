@@ -6,6 +6,7 @@ import com.example.infomedicalstaff.NewAuthenticationFragment
 import com.example.infomedicalstaff.R
 import com.example.infomedicalstaff.business.model.UserModel
 import com.example.infomedicalstaff.databinding.ActivityMainBinding
+import com.example.infomedicalstaff.ui.fragments.HomeFragment
 import com.example.infomedicalstaff.ui.fragments.LoginFragment
 import com.example.infomedicalstaff.utilits.*
 
@@ -35,9 +36,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initFunc() {
-        createLoginFragment()
         initFirebase()
-        initUser()
+        createLoginFragment()
+
+        //initUser()
     }
 
     //обновление данных
@@ -49,7 +51,11 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun createLoginFragment() {
-        supportFragmentManager.beginTransaction()
-            .replace(R.id.main_layout, LoginFragment()).commit()
+        if (AUTH.currentUser!=null){
+            replaceFragment(HomeFragment())
+        } else {
+            supportFragmentManager.beginTransaction()
+                .replace(R.id.main_layout, NewAuthenticationFragment()).commit()
+        }
     }
 }

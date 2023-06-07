@@ -26,31 +26,46 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/top_background1" />
 
-    <EditText
-        android:id="@+id/new_et_reg_email"
-        android:layout_width="0dp"
-        android:layout_height="55dp"
-        android:background="@drawable/edittext_background"
-        android:ems="10"
-        android:layout_marginEnd="32dp"
-        android:layout_marginTop="32dp"
-        android:drawableStart="@drawable/email"
-        android:drawablePadding="16dp"
-        android:inputType="phone"
-        android:textColorHint="@color/accent_icon"
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingLeft="40dp"
+        android:paddingTop="10dp"
+        android:paddingRight="40dp"
+        android:paddingBottom="10dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/welcome"
-        app:layout_constraintTop_toBottomOf="@+id/welcome"
-        tools:ignore="TextFields" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/welcome">
+
+        <EditText
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="8dp"
+            android:background="@drawable/edittext_bg"
+            android:enabled="false"
+            android:paddingLeft="10dp"
+            android:text="+7"
+            android:textColor="#1F1F1F" />
+
+        <EditText
+            android:id="@+id/phoneNumber"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/edittext_bg"
+            android:inputType="phone"
+            android:paddingLeft="10dp"
+            android:textColor="#1F1F1F" />
+    </LinearLayout>
 
     <ImageView
         android:id="@+id/new_bt_singnup"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_marginEnd="32dp"
-        android:layout_marginTop="32dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/new_et_reg_email"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
         app:srcCompat="@drawable/btn_arraw1" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -24,20 +24,30 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/top_background1" />
 
-    <EditText
-        android:id="@+id/new_et_reg_code"
-        android:layout_width="0dp"
-        android:layout_height="55dp"
-        android:background="@drawable/edittext_background"
-        android:ems="10"
-        android:layout_marginEnd="32dp"
-        android:layout_marginTop="32dp"
-        android:drawableStart="@drawable/email"
-        android:drawablePadding="16dp"
-        android:inputType="phone"
-        android:textColorHint="@color/accent_icon"
+    <com.chaos.view.PinView
+        android:id="@+id/id_otp"
+        style="@style/PinWidget.PinView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:cursorVisible="true"
+        android:inputType="number"
+        android:itemBackground="#F4F6F9"
+        android:textColor="#1F1F1F"
+        app:hideLineWhenFilled="true"
+        app:itemCount="6"
+        app:itemRadius="5dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/welcome"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/welcome"
-        tools:ignore="TextFields" />
+        app:lineColor="#2196F3" />
+
+    <ImageView
+        android:id="@+id/new_bt_enter_code"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="32dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/id_otp"
+        app:srcCompat="@drawable/btn_arraw1" />
 </androidx.constraintlayout.widget.ConstraintLayout>
